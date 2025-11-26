@@ -12,12 +12,12 @@ const API_KEY = "YOUR_API_KEY_HERE"
 
 func main() {
 
-	// The endpoint and parameters. In this simple example we hard-code them.
-	// You can change the company name or algorithm type as needed.
-	url := "https://api.interzoid.com/getcompanymatchadvanced?license=" + API_KEY +
-		"&company=ibm&algorithm=model-v4-wide"
+	// API endpoint with example parameters
+	// Change the "fullname" or algorithm as needed.
+	url := "https://api.interzoid.com/getfullnamematch?license=" + API_KEY +
+		"&fullname=James%20Johnston"
 
-	// Perform the HTTP request
+	// Make the HTTP GET request
 	resp, err := http.Get(url)
 	if err != nil {
 		fmt.Println("Error calling API:", err)
@@ -25,14 +25,15 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	// Read the response body
+	// Read all response data
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println("Error reading API response:", err)
 		return
 	}
 
-	// Define a struct to map the JSON response
+	// Struct to map the JSON response.
+	// Note Credits is a STRING.
 	type Response struct {
 		SimKey  string `json:"SimKey"`
 		Code    string `json:"Code"`
@@ -41,15 +42,15 @@ func main() {
 
 	var result Response
 
-	// Convert the JSON into our Go struct
+	// Convert JSON from the API into our struct
 	err = json.Unmarshal(body, &result)
 	if err != nil {
 		fmt.Println("Error parsing JSON:", err)
 		return
 	}
 
-	// Print the results
-	fmt.Println("Match Similarity Key:", result.SimKey)
+	// Print results
+	fmt.Println("Similarity Key:", result.SimKey)
 	fmt.Println("Result Code:", result.Code)
 	fmt.Println("Remaining Credits:", result.Credits)
 }
