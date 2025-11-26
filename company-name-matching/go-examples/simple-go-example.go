@@ -36,7 +36,7 @@ func main() {
 	type Response struct {
 		SimKey  string `json:"SimKey"`
 		Code    string `json:"Code"`
-		Credits int    `json:"Credits"`
+		Credits string `json:"Credits"`
 	}
 
 	var result Response
