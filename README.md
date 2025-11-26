@@ -12,7 +12,7 @@
 
 
 
-\## Interzoid API Platform
+<b>Interzoid API Platform</b>
 
 
 
@@ -24,7 +24,7 @@ This repository contains numerous code samples, tooling, and usage examples show
 
 
 
-All APIs require an API key, which can be obtained by registering at \*\*https://www.interzoid.com\*\*. All tools and utilities are free to use—only the underlying API usage is billed (and only after trial API credits are exhausted).
+All APIs require an API key, which can be obtained by registering at https://www.interzoid.com. All tools and utilities are free to use as only the underlying API usage is billed (after trial API credits are exhausted).
 
 
 
