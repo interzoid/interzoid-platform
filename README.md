@@ -2,7 +2,7 @@
 
 &nbsp; <br>
 
-&nbsp; <img width="400" src="title.jpg" alt="platform">
+&nbsp; <img src="title.jpg" alt="platform">
 
 &nbsp; <br>
 
