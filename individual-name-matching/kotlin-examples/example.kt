@@ -1,9 +1,9 @@
 // example.kt
 //
-// This is a very simple Kotlin example that calls the Interzoid
-// Company Match Advanced API and prints a few values from the JSON response.
+// This simple example calls the Interzoid Full Name Match API,
+// extracts a few fields from the JSON response, and prints them.
 //
-// To compile and run from the command line (from the folder containing this file):
+// Compile and run from the command line:
 //   kotlinc example.kt -include-runtime -d example.jar
 //   java -jar example.jar
 
@@ -17,35 +17,32 @@ const val API_KEY = "YOUR_API_KEY_HERE"
 
 fun main() {
 
-    // In this simple example, we hard-code the endpoint parameters.
-    // You can change the company or algorithm as needed.
-    val company = "ibm"
-    val algorithm = "model-v4-wide"
+    // Hard-coded example parameters.
+    // You can change the full name as you like.
+    val fullName = "James%20Johnston"
 
-    // Build the full URL string for the API call
-    val urlString = "https://api.interzoid.com/getcompanymatchadvanced" +
+    // Build the URL string
+    val urlString = "https://api.interzoid.com/getfullnamematch" +
             "?license=$API_KEY" +
-            "&company=$company" +
-            "&algorithm=$algorithm"
+            "&fullname=$fullName"
 
     println("Calling Interzoid API...")
     println("URL: $urlString")
     println()
 
     try {
-        // Open an HTTP connection to the URL
+        // Open connection and send HTTP GET request
         val url = URL(urlString)
         val connection = url.openConnection() as HttpURLConnection
         connection.requestMethod = "GET"
 
-        // Check the HTTP status code
-        val responseCode = connection.responseCode
-        if (responseCode != HttpURLConnection.HTTP_OK) {
-            println("Non-success HTTP response: $responseCode")
+        // Check for success (HTTP 200)
+        if (connection.responseCode != HttpURLConnection.HTTP_OK) {
+            println("Non-success HTTP response: ${connection.responseCode}")
             return
         }
 
-        // Read the response body into a String
+        // Read the response into a String
         val responseBuilder = StringBuilder()
         BufferedReader(InputStreamReader(connection.inputStream)).use { reader ->
             reader.forEachLine { line ->
@@ -54,45 +51,39 @@ fun main() {
         }
         val responseBody = responseBuilder.toString()
 
-        // Optional: print the raw JSON so you can see what came back
+        // Optional: print raw JSON response
         println("Raw JSON response:")
         println(responseBody)
         println()
 
-        // The JSON response looks something like:
+        // Response format looks like:
         // {
         //   "SimKey":"...",
         //   "Code":"Success",
-        //   "Credits":"123456"
+        //   "Credits":"12345"
         // }
-        //
-        // To keep this example very simple and avoid extra libraries,
-        // we pull out the fields with a small helper function that uses a regex.
 
+        // Extract three fields manually (no library needed)
         val simKey = extractJsonValue(responseBody, "SimKey") ?: "N/A"
         val code = extractJsonValue(responseBody, "Code") ?: "N/A"
         val credits = extractJsonValue(responseBody, "Credits") ?: "N/A"
 
-        // Print the values from the response
-        println("Match Similarity Key: $simKey")
+        // Print the extracted values
+        println("Similarity Key: $simKey")
         println("Result Code: $code")
         println("Remaining Credits: $credits")
 
     } catch (e: Exception) {
-        // If anything goes wrong (network issue, bad URL, etc.), we show the error message
+        // Print any error (network or parsing)
         println("Error calling Interzoid API: ${e.message}")
     }
 }
 
 /**
- * Very small helper function to extract a simple JSON field value
- * from a JSON string, without using any third-party libraries.
- *
+ * Helper function to extract JSON values without external libraries.
  * It looks for a pattern like:  "FieldName":"Value"
- * and returns the Value part, or null if it cannot be found.
  */
 fun extractJsonValue(json: String, fieldName: String): String? {
-    // Example pattern: "SimKey":"some-value"
     val regex = """"$fieldName"\s*:\s*"([^"]*)"""".toRegex()
     val match = regex.find(json)
     return match?.groups?.get(1)?.value
