@@ -20,7 +20,7 @@ https://batch.interzoid.com
 
 
 
-<img src="interactive-api-tool.jpg" alt="interactive api tool">
+<img src="batch-api-processing-tool.jpg" alt="interactive api tool">
 
 
 
