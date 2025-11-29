@@ -1,3 +1,7 @@
+[![Go](https://img.shields.io/badge/Go-1.19%2B-00ADD8?logo=go&logoColor=white)](https://github.com/interzoid/interzoid-platform/tree/main/organization-name-standardization)
+
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)](https://github.com/interzoid/interzoid-platform/tree/main/individual-name-matching)
+
 <p align="center">
 
 <br>
