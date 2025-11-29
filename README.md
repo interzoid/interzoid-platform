@@ -1,7 +1,3 @@
-[![Go](https://img.shields.io/badge/Go-1.19%2B-00ADD8?logo=go&logoColor=white)](https://github.com/interzoid/interzoid-platform/tree/main/organization-name-standardization)
-
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)](https://github.com/interzoid/interzoid-platform/tree/main/individual-name-matching)
-
 <p align="center">
 
 <br>
@@ -18,6 +14,10 @@
 
 <b>Interzoid API Platform</b>
 
+[![Go](https://img.shields.io/badge/Go-1.19%2B-00ADD8?logo=go&logoColor=white)](https://github.com/interzoid/interzoid-platform/tree/main/organization-name-standardization)
+[![Python](https://img.shields.io/badge/Python-3.3%2B-blue?logo=python&logoColor=white)](https://github.com/interzoid/interzoid-platform/tree/main/individual-name-matching)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.5%2B-7F52FF?logo=kotlin&logoColor=white)](https://github.com/interzoid/interzoid-platform)
+[![Node.js](https://img.shields.io/badge/Node.js-18%2B-43853D?logo=node.js&logoColor=white)](https://github.com/interzoid/interzoid-platform/search?l=javascript)
 
 
 Interzoid is an AI-powered API platform that provides data quality, data matching, and data enrichment services to increase the consistency, reliability, and overall data ROI of critical data assets. Interzoid’s APIs allow you to match records, enrich attributes, normalize and standardize fields, and verify data across multiple domains—enabling cleaner pipelines, more accurate analytics, and higher-value operational outcomes.
