@@ -26,7 +26,7 @@ https://try.interzoid.com
 
 
 
-You can generate an API call corresponding to your results to for integration and automation purposes:
+You can generate an API call corresponding to your results for integration and automation purposes:
 
 
 

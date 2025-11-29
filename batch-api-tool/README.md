@@ -8,3 +8,75 @@ The tool also generates the corresponding "Full Dataset API" that the batch tool
 
 https://batch.interzoid.com
 
+
+
+
+
+<p align="center">
+
+
+
+<br>
+
+
+
+<img src="interactive-api-tool.jpg" alt="interactive api tool">
+
+
+
+<br>
+
+
+
+<br>
+
+
+
+</p>
+
+
+
+
+
+
+
+
+
+You can generate an API call corresponding to your results for integration and automation purposes:
+
+
+
+
+
+
+
+<p align="center">
+
+
+
+<br>
+
+
+
+<img src="batch-api-generation.jpg" alt="api call generation">
+
+
+
+<br>
+
+
+
+<br>
+
+
+
+</p>
+
+
+
+
+
+
+
+
+
