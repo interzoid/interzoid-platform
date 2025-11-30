@@ -1,0 +1,271 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Interzoid Company Name Matching API",
+    "description": "This API uses AI models, machine learning, specialized algorithms, and extensive knowledge bases to generate a similarity key for a company or organization name. The similarity key can then be used to identify inconsistent, similar, and duplicate organization names within or across datasets.\n\nTo use this API, you need an API key. Register for an API key at https://www.interzoid.com/register-api-account.\n\nFor more information about this API, visit: https://www.interzoid.com/apis/company-name-matching.\n\nYou can also try this API interactively at https://try.interzoid.com or use it in high-speed batch mode at https://batch.interzoid.com.",
+    "version": "1.0.0",
+    "termsOfService": "https://www.interzoid.com/api-terms-use",
+    "contact": {
+      "name": "Interzoid Support",
+      "url": "https://www.interzoid.com",
+      "email": "support@interzoid.com"
+    }
+  },
+  "externalDocs": {
+    "description": "Company Name Matching API home page and documentation",
+    "url": "https://www.interzoid.com/apis/company-name-matching"
+  },
+  "servers": [
+    {
+      "url": "https://api.interzoid.com",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Company Name Similarity Key",
+      "description": "Generate similarity keys to identify inconsistent, similar, and redundant organization names within or across datasets."
+    }
+  ],
+  "paths": {
+    "/getcompanymatchadvanced": {
+      "get": {
+        "operationId": "getCompanyMatchAdvanced",
+        "tags": [
+          "Company Name Similarity Key"
+        ],
+        "summary": "Generate similarity key for a company or organization name",
+        "description": "Generates a similarity key for a given company or organization name using advanced AI-powered algorithms.\n\nYou can provide your API key either as:\n\n* A `license` query parameter, or\n* An `x-api-key` HTTP header (recommended for production).\n\nRegister for an API key at https://www.interzoid.com/register-api-account.",
+        "security": [
+          {
+            "apiKeyHeader": []
+          },
+          {
+            "apiKeyQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "license",
+            "in": "query",
+            "required": false,
+            "description": "Your API license key when passed via query string. For production, it is recommended to use the `x-api-key` header.",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "license": {
+                "summary": "API key via query parameter",
+                "value": "fh5hs7*****"
+              }
+            }
+          },
+          {
+            "name": "company",
+            "in": "query",
+            "required": true,
+            "description": "The company or organization name for which the similarity key is generated.",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "companyName": {
+                "summary": "Company name example",
+                "value": "Amazon Inc."
+              }
+            }
+          },
+          {
+            "name": "algorithm",
+            "in": "query",
+            "required": true,
+            "description": "The matching algorithm / AI model used to generate the similarity key.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "wide",
+                "narrow",
+                "model-v4-wide",
+                "model-v4-narrow"
+              ],
+              "default": "model-v4-wide"
+            },
+            "examples": {
+              "algorithm": {
+                "summary": "Recommended algorithm example",
+                "value": "model-v4-wide"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the generated similarity key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyMatchResponse"
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Successful match response",
+                    "value": {
+                      "SimKey": "MpOcDqC1Xd67G6GsBJhmBh7RhDNsxa",
+                      "Credits": 50004,
+                      "Code": "Success"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (for example, missing or invalid parameters).",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "summary": "Invalid parameters example",
+                    "value": "Invalid license key or company name missing."
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "API key not found or not recognized.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "value": "API key not found."
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient API credits remaining for the given license key.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "value": "Insufficient API credits remaining."
+                  }
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed (only GET is supported).",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "value": "Method not allowed."
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit reached for the given license key.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "value": "Rate limits reached."
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "value": "Internal server error."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "curl",
+            "label": "cURL (API key in header)",
+            "source": "curl --header \"x-api-key: YOUR_API_KEY\" \"https://api.interzoid.com/getcompanymatchadvanced?company=ibm&algorithm=model-v4-wide\""
+          },
+          {
+            "lang": "curl",
+            "label": "cURL (API key in query)",
+            "source": "curl \"https://api.interzoid.com/getcompanymatchadvanced?license=YOUR_API_KEY&company=ibm&algorithm=model-v4-wide\""
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKeyHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      },
+      "apiKeyQuery": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "license"
+      }
+    },
+    "schemas": {
+      "CompanyMatchResponse": {
+        "type": "object",
+        "required": [
+          "SimKey",
+          "Code"
+        ],
+        "properties": {
+          "SimKey": {
+            "type": "string"
+          },
+          "Credits": {
+            "type": "integer"
+          },
+          "Code": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ]
+}
