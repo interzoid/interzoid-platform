@@ -4,18 +4,7 @@ info:
   description: >
     This API uses AI models, machine learning, specialized algorithms, and
     extensive knowledge bases to generate a similarity key for a company or
-    organization name. The similarity key can then be used to identify
-    inconsistent, similar, and duplicate organization names within or across
-    datasets.
-
-    To use this API, you need an API key. Register for an API key at
-    https://www.interzoid.com/register-api-account.
-
-    For more information about this API, visit:
-    https://www.interzoid.com/apis/company-name-matching.
-
-    You can also try this API interactively at https://try.interzoid.com or
-    use it in high-speed batch mode at https://batch.interzoid.com.
+    organization name…
   version: 1.0.0
   termsOfService: https://www.interzoid.com/api-terms-use
   contact:
@@ -34,9 +23,7 @@ servers:
 tags:
   - name: Company Name Similarity Key
     description: >
-      Generate similarity keys to identify inconsistent, similar, and
-      redundant organization names within or across datasets.
-
+      Generate similarity keys to identify inconsistent…
 paths:
   /getcompanymatchadvanced:
     get:
@@ -44,58 +31,15 @@ paths:
       tags:
         - Company Name Similarity Key
       summary: Generate similarity key for a company or organization name
-      description: >
-        Generates a similarity key for a given company or organization name
-        using advanced AI-powered algorithms.
-
-        You can provide your API key either as:
-
-        * A `license` query parameter, or
-        * An `x-api-key` HTTP header (recommended for production).
-
-        Register for an API key at https://www.interzoid.com/register-api-account.
-      security:
-        - apiKeyHeader: []
-        - apiKeyQuery: []
       parameters:
-        - name: license
-          in: query
-          required: false
-          description: >
-            Your API license key when passed via query string. Register for an
-            API key at https://www.interzoid.com/register-api-account.
-
-            For production, it is recommended to use the `x-api-key` header
-            instead of the query string.
-          schema:
-            type: string
-          examples:
-            license:
-              summary: API key via query parameter
-              value: "fh5hs7*****"
         - name: company
           in: query
           required: true
-          description: >
-            The company or organization name for which the similarity key is
-            generated.
           schema:
             type: string
-          examples:
-            companyName:
-              summary: Company name example
-              value: "Amazon Inc."
         - name: algorithm
           in: query
           required: true
-          description: >
-            The matching algorithm / AI model used to generate the similarity key.
-
-            Supported values include:
-            * `wide` - Fast algorithm with a broader similarity range.
-            * `narrow` - Fast algorithm with more stringent matching.
-            * `model-v4-wide` - Recommended in most cases; high-accuracy, wider range, including global data.
-            * `model-v4-narrow` - High-accuracy, more precise matching, including global data.
           schema:
             type: string
             enum:
@@ -103,95 +47,13 @@ paths:
               - narrow
               - model-v4-wide
               - model-v4-narrow
-            default: model-v4-wide
-          examples:
-            algorithm:
-              summary: Recommended algorithm example
-              value: "model-v4-wide"
       responses:
         '200':
-          description: Successful response containing the generated similarity key.
+          description: Successful response
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CompanyMatchResponse'
-              examples:
-                success:
-                  summary: Successful match response
-                  value:
-                    SimKey: "MpOcDqC1Xd67G6GsBJhmBh7RhDNsxa"
-                    Credits: 50004
-                    Code: "Success"
-        '400':
-          description: Bad request (for example, missing or invalid parameters).
-          content:
-            text/plain:
-              schema:
-                type: string
-              examples:
-                error:
-                  summary: Missing or invalid parameter example
-                  value: "Invalid license key or company name missing."
-        '402':
-          description: API key not found or not recognized.
-          content:
-            text/plain:
-              schema:
-                type: string
-              examples:
-                error:
-                  summary: API key not found example
-                  value: "API key not found."
-        '403':
-          description: Insufficient API credits remaining for the given license key.
-          content:
-            text/plain:
-              schema:
-                type: string
-              examples:
-                error:
-                  summary: Insufficient credits example
-                  value: "Insufficient API credits remaining."
-        '405':
-          description: Method not allowed (only GET is supported).
-          content:
-            text/plain:
-              schema:
-                type: string
-              examples:
-                error:
-                  summary: Method not allowed example
-                  value: "Method not allowed."
-        '429':
-          description: Rate limit reached for the given license key.
-          content:
-            text/plain:
-              schema:
-                type: string
-              examples:
-                error:
-                  summary: Rate limit example
-                  value: "Rate limits reached."
-        '500':
-          description: Internal server error.
-          content:
-            text/plain:
-              schema:
-                type: string
-              examples:
-                error:
-                  summary: Internal error example
-                  value: "Internal server error."
-      x-codeSamples:
-        - lang: curl
-          label: cURL (API key in header)
-          source: |
-            curl --header "x-api-key: YOUR_API_KEY" \
-              "https://api.interzoid.com/getcompanymatchadvanced?company=ibm&algorithm=model-v4-wide"
-        - lang: curl
-          label: cURL (API key in query)
-          source: |
-            curl "https://api.interzoid.com/getcompanymatchadvanced?license=YOUR_API_KEY&company=ibm&algorithm=model-v4-wide"
 
 components:
   securitySchemes:
@@ -199,37 +61,24 @@ components:
       type: apiKey
       in: header
       name: x-api-key
-      description: >
-        API key passed in the `x-api-key` header. Recommended for production
-        usage to avoid exposing keys in URLs.
     apiKeyQuery:
       type: apiKey
       in: query
       name: license
-      description: >
-        API key passed in the `license` query parameter. Suitable for quick
-        testing and simple integrations.
+
   schemas:
     CompanyMatchResponse:
       type: object
-      description: Response payload for a successful company name matching request.
       required:
         - SimKey
         - Code
       properties:
         SimKey:
           type: string
-          description: >
-            Generated similarity key for the provided company or organization
-            name. Records with the same similarity key are considered similar.
         Credits:
-          type: integer
-          description: >
-            Remaining credits for your API license after this call.
+          type: string    # <— UPDATED TO STRING
         Code:
           type: string
-          description: >
-            Response status code. `"Success"` indicates a successful call.
 
 security:
   - apiKeyHeader: []

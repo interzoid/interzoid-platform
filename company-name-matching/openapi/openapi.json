@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Interzoid Company Name Matching API",
-    "description": "This API uses AI models, machine learning, specialized algorithms, and extensive knowledge bases to generate a similarity key for a company or organization name. The similarity key can then be used to identify inconsistent, similar, and duplicate organization names within or across datasets.\n\nTo use this API, you need an API key. Register for an API key at https://www.interzoid.com/register-api-account.\n\nFor more information about this API, visit: https://www.interzoid.com/apis/company-name-matching.\n\nYou can also try this API interactively at https://try.interzoid.com or use it in high-speed batch mode at https://batch.interzoid.com.",
+    "description": "This API uses AI models, machine learning, specialized algorithms, and extensive knowledge bases to generate a similarity key for a company or organization name. The similarity key can then be used to identify inconsistent, similar, and duplicate organization names within or across datasets.\n\nTo use this API, you need an API key. Register for an API key at https://www.interzoid.com/register-api-account.\n\nFor more information about this API, visit:\nhttps://www.interzoid.com/apis/company-name-matching.\n\nYou can also try this API interactively at https://try.interzoid.com or use it in high-speed batch mode at https://batch.interzoid.com.",
     "version": "1.0.0",
     "termsOfService": "https://www.interzoid.com/api-terms-use",
     "contact": {
@@ -49,7 +49,7 @@
             "name": "license",
             "in": "query",
             "required": false,
-            "description": "Your API license key when passed via query string. For production, it is recommended to use the `x-api-key` header.",
+            "description": "Your API license key when passed via query string. Register for an API key at https://www.interzoid.com/register-api-account.\n\nFor production, it is recommended to use the `x-api-key` header instead of the query string.",
             "schema": {
               "type": "string"
             },
@@ -79,7 +79,7 @@
             "name": "algorithm",
             "in": "query",
             "required": true,
-            "description": "The matching algorithm / AI model used to generate the similarity key.",
+            "description": "The matching algorithm / AI model used to generate the similarity key.\n\nSupported values include:\n* `wide` - Fast algorithm with a broader similarity range.\n* `narrow` - Fast algorithm with more stringent matching.\n* `model-v4-wide` - Recommended in most cases; high-accuracy, wider range, including global data.\n* `model-v4-narrow` - High-accuracy, more precise matching, including global data.",
             "schema": {
               "type": "string",
               "enum": [
@@ -111,7 +111,7 @@
                     "summary": "Successful match response",
                     "value": {
                       "SimKey": "MpOcDqC1Xd67G6GsBJhmBh7RhDNsxa",
-                      "Credits": 50004,
+                      "Credits": "50004",
                       "Code": "Success"
                     }
                   }
@@ -128,7 +128,7 @@
                 },
                 "examples": {
                   "error": {
-                    "summary": "Invalid parameters example",
+                    "summary": "Missing or invalid parameter example",
                     "value": "Invalid license key or company name missing."
                   }
                 }
@@ -144,6 +144,7 @@
                 },
                 "examples": {
                   "error": {
+                    "summary": "API key not found example",
                     "value": "API key not found."
                   }
                 }
@@ -159,6 +160,7 @@
                 },
                 "examples": {
                   "error": {
+                    "summary": "Insufficient credits example",
                     "value": "Insufficient API credits remaining."
                   }
                 }
@@ -174,6 +176,7 @@
                 },
                 "examples": {
                   "error": {
+                    "summary": "Method not allowed example",
                     "value": "Method not allowed."
                   }
                 }
@@ -189,6 +192,7 @@
                 },
                 "examples": {
                   "error": {
+                    "summary": "Rate limit example",
                     "value": "Rate limits reached."
                   }
                 }
@@ -204,6 +208,7 @@
                 },
                 "examples": {
                   "error": {
+                    "summary": "Internal error example",
                     "value": "Internal server error."
                   }
                 }
@@ -215,7 +220,7 @@
           {
             "lang": "curl",
             "label": "cURL (API key in header)",
-            "source": "curl --header \"x-api-key: YOUR_API_KEY\" \"https://api.interzoid.com/getcompanymatchadvanced?company=ibm&algorithm=model-v4-wide\""
+            "source": "curl --header \"x-api-key: YOUR_API_KEY\" \\\n  \"https://api.interzoid.com/getcompanymatchadvanced?company=ibm&algorithm=model-v4-wide\""
           },
           {
             "lang": "curl",
@@ -231,30 +236,36 @@
       "apiKeyHeader": {
         "type": "apiKey",
         "in": "header",
-        "name": "x-api-key"
+        "name": "x-api-key",
+        "description": "API key passed in the `x-api-key` header. Recommended for production usage to avoid exposing keys in URLs."
       },
       "apiKeyQuery": {
         "type": "apiKey",
         "in": "query",
-        "name": "license"
+        "name": "license",
+        "description": "API key passed in the `license` query parameter. Suitable for quick testing and simple integrations."
       }
     },
     "schemas": {
       "CompanyMatchResponse": {
         "type": "object",
+        "description": "Response payload for a successful company name matching request.",
         "required": [
           "SimKey",
           "Code"
         ],
         "properties": {
           "SimKey": {
-            "type": "string"
+            "type": "string",
+            "description": "Generated similarity key for the provided company or organization name. Records with the same similarity key are considered similar."
           },
           "Credits": {
-            "type": "integer"
+            "type": "string",
+            "description": "Remaining credits for your API license after this call, returned as a string."
           },
           "Code": {
-            "type": "string"
+            "type": "string",
+            "description": "Response status code. `\"Success\"` indicates a successful call."
           }
         }
       }
