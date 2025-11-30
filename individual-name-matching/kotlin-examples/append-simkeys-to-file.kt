@@ -1,13 +1,13 @@
 // append-simkeys-to-file.kt
 //
-// This example reads company names from a text file (one per line),
-// calls the Interzoid Company Match Advanced API for each line,
-// and writes an output CSV with the original value and the returned SimKey.
+// Reads names from a text file, one per line,
+// calls the Interzoid Full Name Match API for each,
+// and writes an output CSV containing the original name and the SimKey.
 //
-// Input:  sample-input-file.txt   (one company name per line)
-// Output: output.csv              (two columns: original, SimKey)
+// Input:  sample-input-file.txt
+// Output: output.csv
 //
-// Compile and run from the command line:
+// Compile and run:
 //   kotlinc append-simkeys-to-file.kt -include-runtime -d append-simkeys-to-file.jar
 //   java -jar append-simkeys-to-file.jar
 
@@ -27,47 +27,41 @@ const val INPUT_FILE_NAME = "sample-input-file.txt"
 const val OUTPUT_FILE_NAME = "output.csv"
 
 fun main() {
-    // Try to open the input file
     val inputFile = File(INPUT_FILE_NAME)
     if (!inputFile.exists()) {
         println("Error: input file \"$INPUT_FILE_NAME\" not found.")
         return
     }
 
-    // Create (or overwrite) the output CSV file
     val outputFile = File(OUTPUT_FILE_NAME)
 
     PrintWriter(outputFile).use { writer ->
         var lineNumber = 0
 
-        // Read the input file line by line
         inputFile.useLines { lines ->
             lines.forEach { line ->
                 lineNumber++
                 val originalValue = line
 
-                // Skip completely empty lines (optional)
-                if (originalValue.isEmpty()) {
-                    return@forEach
-                }
+                // Skip empty lines (optional)
+                if (originalValue.isEmpty()) return@forEach
 
-                // URL-encode the company name so it is safe for HTTP
-                val companyParam = URLEncoder.encode(originalValue, "UTF-8")
+                // URL encode the name so it works safely
+                val nameParam = URLEncoder.encode(originalValue, "UTF-8")
 
-                // Build the Interzoid API URL
+                // Build the API URL
                 val apiURL =
-                    "https://api.interzoid.com/getcompanymatchadvanced" +
+                    "https://api.interzoid.com/getfullnamematch" +
                             "?license=$API_KEY" +
-                            "&company=$companyParam" +
-                            "&algorithm=model-v4-wide"
+                            "&fullname=$nameParam"
 
                 try {
-                    // Call the API
+                    // Make the GET request
                     val url = URL(apiURL)
                     val connection = url.openConnection() as HttpURLConnection
                     connection.requestMethod = "GET"
 
-                    // Read the response body into a string
+                    // Read body into a string
                     val responseBuilder = StringBuilder()
                     BufferedReader(InputStreamReader(connection.inputStream)).use { reader ->
                         reader.forEachLine { responseLine ->
@@ -76,28 +70,18 @@ fun main() {
                     }
                     val responseBody = responseBuilder.toString()
 
-                    // Extract fields from the JSON response.
-                    // We keep it simple and use a helper function instead of a JSON library.
+                    // Extract fields without any JSON library
                     val simKey = extractJsonValue(responseBody, "SimKey") ?: ""
-                    val code = extractJsonValue(responseBody, "Code") ?: ""
 
-                    // Optional: check result code
-                    if (code != "Success") {
-                        println(
-                            "Non-success code for line $lineNumber (${quoteForLog(originalValue)}): " +
-                                    "Code=$code"
-                        )
-                    }
-
-                    // Write original value and SimKey as a CSV row
+                    // Write one row to CSV
                     writeCsvRow(writer, listOf(originalValue, simKey))
 
                 } catch (e: Exception) {
-                    // On any error, log it and write a row with empty SimKey
                     println(
-                        "Error processing line $lineNumber " +
+                        "API error on line $lineNumber " +
                                 "(${quoteForLog(originalValue)}): ${e.message}"
                     )
+                    // Write blank SimKey so row count remains consistent
                     writeCsvRow(writer, listOf(originalValue, ""))
                 }
             }
@@ -108,10 +92,8 @@ fun main() {
 }
 
 /**
- * Extracts a simple JSON string field from the given JSON text,
- * without using a JSON library.
- *
- * Looks for: "FieldName":"Value"
+ * Extracts a JSON field like "FieldName":"Value"
+ * without external libraries.
  */
 fun extractJsonValue(json: String, fieldName: String): String? {
     val regex = """"$fieldName"\s*:\s*"([^"]*)"""".toRegex()
@@ -120,11 +102,7 @@ fun extractJsonValue(json: String, fieldName: String): String? {
 }
 
 /**
- * Writes a single CSV row. This simple helper:
- * - wraps each value in double-quotes
- * - escapes any existing double-quotes by doubling them
- *
- * This ensures commas and quotes are handled safely.
+ * Writes one CSV row, escaping commas/quotes safely.
  */
 fun writeCsvRow(writer: PrintWriter, columns: List<String>) {
     val escapedColumns = columns.map { csvEscape(it) }
@@ -132,9 +110,7 @@ fun writeCsvRow(writer: PrintWriter, columns: List<String>) {
 }
 
 /**
- * Escapes a single CSV field by:
- * - doubling any double-quotes
- * - wrapping the entire field in double-quotes
+ * Escapes CSV safely by doubling quotes and wrapping with quotes.
  */
 fun csvEscape(value: String): String {
     val escaped = value.replace("\"", "\"\"")
@@ -142,7 +118,6 @@ fun csvEscape(value: String): String {
 }
 
 /**
- * Helper used only for log messages (not for CSV).
- * Adds quotes around the value so it is clear in logs.
+ * Only used for log messages (not CSV).
  */
 fun quoteForLog(value: String): String = "\"$value\""
