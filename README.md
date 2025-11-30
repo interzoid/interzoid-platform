@@ -18,8 +18,7 @@
 [![Python](https://img.shields.io/badge/Python-3.3%2B-blue?logo=python&logoColor=white)](https://github.com/interzoid/interzoid-platform/tree/main/individual-name-matching)
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.5%2B-7F52FF?logo=kotlin&logoColor=white)](https://github.com/interzoid/interzoid-platform)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-43853D?logo=node.js&logoColor=white)](https://github.com/interzoid/interzoid-platform/search?l=javascript)
-[![TypeScript](https://img.shields.io/badge/TypeScript-blue?logo=typescript&logoColor=white)]
-(https://github.com/interzoid/interzoid-platform/search?l=typescript)
+![TypeScript](https://img.shields.io/badge/TypeScript-blue?logo=typescript&logoColor=white)
 ![Batch Tools](https://img.shields.io/badge/Batch-Tools-orange)
 ![Batch API](https://img.shields.io/badge/Batch-API-green)
 ![OpenAPI](https://img.shields.io/badge/OpenAPI-Spec-6BA539?logo=openapi-initiative&logoColor=white)
