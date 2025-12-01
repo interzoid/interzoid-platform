@@ -8,7 +8,7 @@ Company Name Matching API Product Page: https://www.interzoid.com/apis/company-n
 
 
 
-The API generates similarity keys for a given corporate or organizational entity. A similarity key represents hundreds of possible permutations of the entity name. Then matching by similarity key, rather than the actual data itself, provides for dramatically higher match and search rates.
+The API generates similarity keys for a given corporate or organizational entity. A similarity key represents hundreds of possible permutations of the entity name (variations, misspellings, acronyms, abbreviations, typos, etc.). Then, matching by similarity key rather than the actual data itself, provides for dramatically higher match and search rates when comparing data.
 
 
 
