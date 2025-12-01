@@ -16,12 +16,11 @@ The API generates similarity keys for a given corporate or organizational entity
 
 There are three code examples for each language platform:
 
-
+<br>
 
 <b>example.xx</b> (extension varies based on programming language)
 
 ------------------------------------------------------------
-
 
 <i>Generates a single similarity key used for matching or searching purposes:</i>
 
@@ -29,20 +28,14 @@ There are three code examples for each language platform:
 
 IBM -> edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs
 
-
-
-
-
+<br>
 <br>
 
 <b>append-simkeys-to-file.xx</b>
 
 --------------------------
 
-
-
 <i>Generates a single similarity key for each entry of a text file (see sample input file):</i>
-
 
 <br>
 
@@ -76,12 +69,11 @@ Intl bus machines,edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs
 
 
 <br>
+<br>
 
 <b>generate-match-report.xx</b>
 
 -------------------------
-
-<br>
 
 <i>Generates a single similarity key for each entry of a text file, sorts results by simkey, and then writes clusters of matching records based on simkey to an output file:</i>
 
