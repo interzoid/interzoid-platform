@@ -1,0 +1,261 @@
+openapi: 3.1.0
+info:
+  title: Interzoid Street Address Matching API
+  description: >
+    This API uses AI models, machine learning, specialized algorithms, and
+    extensive knowledge bases to generate a similarity key for a street
+    address. The similarity key can then be used to identify inconsistent,
+    similar, and duplicate street addresses within or across datasets.
+
+    To use this API, you need an API key. Register for an API key at
+    https://www.interzoid.com/register-api-account.
+
+    For more information about this API, visit:
+    https://www.interzoid.com/apis/street-address-matching.
+
+    You can also try this API interactively at https://try.interzoid.com or
+    use it in high-speed batch mode at https://batch.interzoid.com.
+  version: 1.0.0
+  termsOfService: https://www.interzoid.com/api-terms-use
+  contact:
+    name: Interzoid Support
+    url: https://www.interzoid.com
+    email: support@interzoid.com
+
+externalDocs:
+  description: Street Address Matching API home page and documentation
+  url: https://www.interzoid.com/apis/street-address-matching
+
+servers:
+  - url: https://api.interzoid.com
+    description: Production server
+
+tags:
+  - name: Address Similarity Key
+    description: >
+      Generate similarity keys to identify inconsistent, similar, and redundant
+      street addresses within or across datasets.
+
+paths:
+  /getaddressmatchadvanced:
+    get:
+      operationId: getAddressMatchAdvanced
+      tags:
+        - Address Similarity Key
+      summary: Generate similarity key for a street address
+      description: >
+        Generates a similarity key for a given street address using advanced
+        AI-powered algorithms and address-normalization techniques.
+
+        This API is optimized for matching on the street-address portion of
+        an address (street number, street name, unit, etc.). A common best
+        practice is to concatenate the generated similarity key with the
+        address's postal or ZIP code to form a "combination similarity key"
+        for higher-precision matching.
+
+        You can provide your API key either as:
+
+        * A `license` query parameter, or
+        * An `x-api-key` HTTP header (recommended for production).
+
+        Register for an API key at https://www.interzoid.com/register-api-account.
+      security:
+        - apiKeyHeader: []
+        - apiKeyQuery: []
+      parameters:
+        - name: license
+          in: query
+          required: false
+          description: >
+            Your API license key when passed via query string. Register for an
+            API key at https://www.interzoid.com/register-api-account.
+
+            For production, it is recommended to use the `x-api-key` header
+            instead of the query string.
+          schema:
+            type: string
+          examples:
+            license:
+              summary: API key via query parameter
+              value: "fh5hs7*****"
+        - name: address
+          in: query
+          required: true
+          description: >
+            The street address for which the similarity key is generated.
+            This should contain the street number and street name, and may
+            also contain unit information (suite, apartment, etc.).
+          schema:
+            type: string
+          examples:
+            address:
+              summary: Address example
+              value: "400 East Broadway St"
+        - name: algorithm
+          in: query
+          required: true
+          description: >
+            The matching algorithm / AI model used to generate the similarity key.
+
+            Supported values include:
+
+            * `narrow` - Very fast; matches considering unit designators
+              (suite, apt, etc.); less accurate than AI-based options.
+            * `wide` - Very fast; matches on street address only, ignoring
+              unit designators; less accurate than AI-based options.
+            * `ai-plus-narrow` - AI-enhanced matching considering unit
+              designators; strong balance of accuracy and performance.
+            * `ai-plus-wide` - AI-enhanced matching on street address only;
+              strong balance of accuracy and performance.
+            * `ai-medium-narrow` - Best accuracy, considering unit
+              designators. Recommended algorithm; response may be slightly
+              slower.
+            * `ai-medium-wide` - Best accuracy, matching on street address
+              only. Response may be slightly slower but provides very
+              high-quality results.
+            * `model-v3-narrow` - Legacy model; considers unit designators.
+            * `model-v3-wide` - Legacy model; matches on street address only.
+          schema:
+            type: string
+            enum:
+              - narrow
+              - wide
+              - ai-plus-narrow
+              - ai-plus-wide
+              - ai-medium-narrow
+              - ai-medium-wide
+              - model-v3-narrow
+              - model-v3-wide
+            default: ai-medium-narrow
+          examples:
+            algorithm:
+              summary: Recommended algorithm example
+              value: "ai-medium-narrow"
+      responses:
+        '200':
+          description: Successful response containing the generated similarity key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressMatchResponse'
+              examples:
+                success:
+                  summary: Successful match response
+                  value:
+                    SimKey: "d477E1d7sG6dja3hDNsk9P"
+                    Code: "Success"
+                    Credits: "5794029"
+        '400':
+          description: Bad request (for example, missing or invalid parameters).
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Missing or invalid parameter example
+                  value: "Invalid license key or address missing."
+        '402':
+          description: API key not found or not recognized.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: API key not found example
+                  value: "API key not found."
+        '403':
+          description: Insufficient API credits remaining for the given license key.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Insufficient credits example
+                  value: "Insufficient API credits remaining."
+        '405':
+          description: Method not allowed (only GET is supported).
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Method not allowed example
+                  value: "Method not allowed."
+        '429':
+          description: Rate limit reached for the given license key.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Rate limit example
+                  value: "Rate limits reached."
+        '500':
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Internal error example
+                  value: "Internal server error."
+      x-codeSamples:
+        - lang: curl
+          label: cURL (API key in header)
+          source: |
+            curl --header "x-api-key: YOUR_API_KEY" \
+              "https://api.interzoid.com/getaddressmatchadvanced?address=400%20East%20Broadway%20St&algorithm=ai-medium-narrow"
+        - lang: curl
+          label: cURL (API key in query)
+          source: |
+            curl "https://api.interzoid.com/getaddressmatchadvanced?license=YOUR_API_KEY&address=400%20East%20Broadway%20St&algorithm=ai-medium-narrow"
+
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: >
+        API key passed in the `x-api-key` header. Recommended for production
+        usage to avoid exposing keys in URLs.
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: license
+      description: >
+        API key passed in the `license` query parameter. Suitable for quick
+        testing and simple integrations.
+  schemas:
+    AddressMatchResponse:
+      type: object
+      description: Response payload for a successful street address matching request.
+      required:
+        - SimKey
+        - Code
+      properties:
+        SimKey:
+          type: string
+          description: >
+            Generated similarity key for the provided street address. Records
+            with the same similarity key are considered similar or matching
+            addresses.
+        Credits:
+          type: string
+          description: >
+            Remaining credits for your API license after this call, returned as
+            a string.
+        Code:
+          type: string
+          description: >
+            Response status code. `"Success"` indicates a successful call.
+
+security:
+  - apiKeyHeader: []
+  - apiKeyQuery: []
