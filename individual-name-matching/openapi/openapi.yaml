@@ -1,0 +1,215 @@
+openapi: 3.1.0
+info:
+  title: Interzoid Individual Name Matching API
+  description: >
+    This API uses AI models, machine learning, specialized algorithms, and
+    extensive knowledge bases to generate a similarity key for an individual
+    full name. The similarity key can then be used to identify inconsistent,
+    similar, and duplicate person names within or across datasets.
+
+    To use this API, you need an API key. Register for an API key at
+    https://www.interzoid.com/register-api-account.
+
+    For more information about this API, visit:
+    https://www.interzoid.com/apis/individual-name-matching.
+
+    You can also try this API interactively at https://try.interzoid.com or
+    use it in high-speed batch mode at https://batch.interzoid.com.
+  version: 1.0.0
+  termsOfService: https://www.interzoid.com/api-terms-use
+  contact:
+    name: Interzoid Support
+    url: https://www.interzoid.com
+    email: support@interzoid.com
+
+externalDocs:
+  description: Individual Name Matching API home page and documentation
+  url: https://www.interzoid.com/apis/individual-name-matching
+
+servers:
+  - url: https://api.interzoid.com
+    description: Production server
+
+tags:
+  - name: Full Name Similarity Key
+    description: >
+      Generate similarity keys to identify inconsistent, similar, and redundant
+      individual names within or across datasets.
+
+paths:
+  /getfullnamematch:
+    get:
+      operationId: getFullNameMatch
+      tags:
+        - Full Name Similarity Key
+      summary: Generate similarity key for an individual full name
+      description: >
+        Generates a similarity key for a given individual full name using
+        advanced AI-powered algorithms and globally-aware name models.
+
+        You can provide your API key either as:
+
+        * A `license` query parameter, or
+        * An `x-api-key` HTTP header (recommended for production).
+
+        Register for an API key at https://www.interzoid.com/register-api-account.
+      security:
+        - apiKeyHeader: []
+        - apiKeyQuery: []
+      parameters:
+        - name: license
+          in: query
+          required: false
+          description: >
+            Your API license key when passed via query string. Register for an
+            API key at https://www.interzoid.com/register-api-account.
+
+            For production, it is recommended to use the `x-api-key` header
+            instead of the query string.
+          schema:
+            type: string
+          examples:
+            license:
+              summary: API key via query parameter
+              value: "fh5hs7*****"
+        - name: fullname
+          in: query
+          required: true
+          description: >
+            The individual full name for which the similarity key is generated.
+            This API is designed for full names where first name and last name
+            are in the same field.
+          schema:
+            type: string
+          examples:
+            fullName:
+              summary: Full name example
+              value: "James Johnston"
+      responses:
+        '200':
+          description: Successful response containing the generated similarity key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FullNameMatchResponse'
+              examples:
+                success:
+                  summary: Successful match response
+                  value:
+                    SimKey: "N1Ai4RfV0SRJf2dN1Ai4QTVofRgF2dSVzcA4"
+                    Credits: "5828243"
+                    Code: "Success"
+        '400':
+          description: Bad request (for example, missing or invalid parameters).
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Missing or invalid parameter example
+                  value: "Invalid license key or full name missing."
+        '402':
+          description: API key not found or not recognized.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: API key not found example
+                  value: "API key not found."
+        '403':
+          description: Insufficient API credits remaining for the given license key.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Insufficient credits example
+                  value: "Insufficient API credits remaining."
+        '405':
+          description: Method not allowed (only GET is supported).
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Method not allowed example
+                  value: "Method not allowed."
+        '429':
+          description: Rate limit reached for the given license key.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Rate limit example
+                  value: "Rate limits reached."
+        '500':
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Internal error example
+                  value: "Internal server error."
+      x-codeSamples:
+        - lang: curl
+          label: cURL (API key in header)
+          source: |
+            curl --header "x-api-key: YOUR_API_KEY" \
+              "https://api.interzoid.com/getfullnamematch?fullname=James%20Johnston"
+        - lang: curl
+          label: cURL (API key in query)
+          source: |
+            curl "https://api.interzoid.com/getfullnamematch?license=YOUR_API_KEY&fullname=James%20Johnston"
+
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: >
+        API key passed in the `x-api-key` header. Recommended for production
+        usage to avoid exposing keys in URLs.
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: license
+      description: >
+        API key passed in the `license` query parameter. Suitable for quick
+        testing and simple integrations.
+  schemas:
+    FullNameMatchResponse:
+      type: object
+      description: Response payload for a successful individual name matching request.
+      required:
+        - SimKey
+        - Code
+      properties:
+        SimKey:
+          type: string
+          description: >
+            Generated similarity key for the provided full name. Records with
+            the same similarity key are considered similar or matching
+            individual names.
+        Credits:
+          type: string
+          description: >
+            Remaining credits for your API license after this call, returned as
+            a string.
+        Code:
+          type: string
+          description: >
+            Response status code. `"Success"` indicates a successful call.
+
+security:
+  - apiKeyHeader: []
+  - apiKeyQuery: []
