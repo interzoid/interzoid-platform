@@ -18,14 +18,12 @@ There are three code examples for each language platform:
 
 
 
-example.xx (extension varies based on programming language)
+<b>example.xx</b> (extension varies based on programming language)
 
 ------------------------------------------------------------
 
 
-
-Generates a single similarity key used for matching or searching purposes:
-
+<i>Generates a single similarity key used for matching or searching purposes:</i>
 
 <br>
 
@@ -37,13 +35,13 @@ IBM -> edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs
 
 <br>
 
-append-simkeys-to-file.xx
+<b>append-simkeys-to-file.xx</b>
 
 --------------------------
 
 
 
-Generates a single similarity key for each entry of a text file (see sample input file):
+<i>Generates a single similarity key for each entry of a text file (see sample input file):</i>
 
 
 <br>
@@ -77,16 +75,15 @@ google inc.,pGWzK9MrYZzcyOrW5AkpnJYiOgI3qnO0EhwsuNh\_dxk
 Intl bus machines,edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs
 
 
-
 <br>
 
-generate-match-report.xx
+<b>generate-match-report.xx</b>
 
 -------------------------
 
 <br>
 
-Generates a single similarity key for each entry of a text file, sorts results by simkey, and then writes clusters of matching records based on simkey to an output file:
+<i>Generates a single similarity key for each entry of a text file, sorts results by simkey, and then writes clusters of matching records based on simkey to an output file:</i>
 
 <br>
 
