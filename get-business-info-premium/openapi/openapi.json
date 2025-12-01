@@ -1,0 +1,295 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Interzoid Get Parent Company Info API",
+    "description": "This API provides detailed ultimate parent company information for a given company or domain, including parent company identification, headquarters location, reference URLs, and other corporate details. Simply provide a company name or domain name to discover its parent organization and ownership relationships.\n\nTo use this API, you need an API key. Register for an API key at\nhttps://www.interzoid.com/register-api-account.\n\nFor more information about this API, visit:\nhttps://www.interzoid.com/apis/get-parent-company-info.\n\nYou can also try this API interactively at https://data.interzoid.com\n(AI Interactive Data Client) or use it in high-speed batch mode at\nhttps://batch.interzoid.com.",
+    "version": "1.0.0",
+    "termsOfService": "https://www.interzoid.com/api-terms-use",
+    "contact": {
+      "name": "Interzoid Support",
+      "url": "https://www.interzoid.com",
+      "email": "support@interzoid.com"
+    }
+  },
+  "externalDocs": {
+    "description": "Get Parent Company Info API home page and documentation",
+    "url": "https://www.interzoid.com/apis/get-parent-company-info"
+  },
+  "servers": [
+    {
+      "url": "https://api.interzoid.com",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Parent Company Info",
+      "description": "Discover ultimate parent companies, ownership structures, and corporate relationships for organizations worldwide."
+    }
+  ],
+  "paths": {
+    "/getparentcompanyinfo": {
+      "get": {
+        "operationId": "getParentCompanyInfo",
+        "tags": [
+          "Parent Company Info"
+        ],
+        "summary": "Retrieve ultimate parent company information",
+        "description": "Retrieves detailed ultimate parent company information for a given company or domain name, including:\n\n* Original company name and website\n* Parent company name and website\n* Parent company headquarters location\n* Parent company business description\n* Reference URL(s) supporting the ownership relationship\n* Remaining credits and status code\n\nTypical use cases include:\n* Mapping corporate hierarchies for risk and compliance\n* Understanding customer and vendor ownership structures\n* Enhancing B2B datasets for analytics and segmentation\n* Supporting due diligence and research workflows\n\nYou can provide your API key either as:\n\n* A `license` query parameter, or\n* An `x-api-key` HTTP header (recommended for production).\n\nRegister for an API key at https://www.interzoid.com/register-api-account.",
+        "security": [
+          {
+            "apiKeyHeader": []
+          },
+          {
+            "apiKeyQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "license",
+            "in": "query",
+            "required": false,
+            "description": "Your API license key when passed via query string. Register for an API key at https://www.interzoid.com/register-api-account.\n\nFor production, it is recommended to use the `x-api-key` header instead of the query string.",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "license": {
+                "summary": "API key via query parameter",
+                "value": "fh5hs7*****"
+              }
+            }
+          },
+          {
+            "name": "lookup",
+            "in": "query",
+            "required": true,
+            "description": "The company name or domain name for which the parent company information should be retrieved. This can be a brand name, legal company name, or primary web domain.",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "companyName": {
+                "summary": "Company name example",
+                "value": "Informatica"
+              },
+              "domain": {
+                "summary": "Domain example",
+                "value": "informatica.com"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing ultimate parent company information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParentCompanyInfoResponse"
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Successful parent company info response",
+                    "value": {
+                      "CompanyName": "Informatica",
+                      "CompanyURL": "informatica.com",
+                      "ParentCompany": "Salesforce",
+                      "ParentCompanyLocation": "San Francisco, California, United States",
+                      "ParentCompanyURL": "salesforce.com",
+                      "ParentCompanyDescription": "American cloud-based software company that provides applications focused on sales, customer service, marketing automation, e-commerce, analytics, artificial intelligence, and application development.",
+                      "ParentCompanyReferenceURL": "https://www.cnbc.com/2025/05/27/salesforce-informatica-deal.html",
+                      "Code": "Success",
+                      "Credits": "443222"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (for example, missing or invalid parameters).",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "summary": "Missing or invalid parameter example",
+                    "value": "Invalid license key or lookup parameter missing."
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "API key not found or not recognized.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "summary": "API key not found example",
+                    "value": "API key not found."
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient API credits remaining for the given license key.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "summary": "Insufficient credits example",
+                    "value": "Insufficient API credits remaining."
+                  }
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed (only GET is supported).",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "summary": "Method not allowed example",
+                    "value": "Method not allowed."
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit reached for the given license key.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "summary": "Rate limit example",
+                    "value": "Rate limits reached."
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "summary": "Internal error example",
+                    "value": "Internal server error."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "curl",
+            "label": "cURL (API key in header)",
+            "source": "curl --header \"x-api-key: YOUR_API_KEY\" \\\n  \"https://api.interzoid.com/getparentcompanyinfo?lookup=informatica\""
+          },
+          {
+            "lang": "curl",
+            "label": "cURL (API key in query)",
+            "source": "curl \"https://api.interzoid.com/getparentcompanyinfo?license=YOUR_API_KEY&lookup=informatica\""
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKeyHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "API key passed in the `x-api-key` header. Recommended for production usage to avoid exposing keys in URLs."
+      },
+      "apiKeyQuery": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "license",
+        "description": "API key passed in the `license` query parameter. Suitable for quick testing and simple integrations."
+      }
+    },
+    "schemas": {
+      "ParentCompanyInfoResponse": {
+        "type": "object",
+        "description": "Response payload for a successful Get Parent Company Info request, including original company details and its ultimate parent information.",
+        "required": [
+          "CompanyName",
+          "ParentCompany",
+          "Code"
+        ],
+        "properties": {
+          "CompanyName": {
+            "type": "string",
+            "description": "The original company name that was searched."
+          },
+          "CompanyURL": {
+            "type": "string",
+            "description": "The primary website domain associated with the original company."
+          },
+          "ParentCompany": {
+            "type": "string",
+            "description": "The identified ultimate parent company name."
+          },
+          "ParentCompanyLocation": {
+            "type": "string",
+            "description": "The parent company's headquarters location (typically city, region, and country)."
+          },
+          "ParentCompanyURL": {
+            "type": "string",
+            "description": "The primary website domain for the parent company."
+          },
+          "ParentCompanyDescription": {
+            "type": "string",
+            "description": "A brief description of the parent company’s business, operations, and focus areas."
+          },
+          "ParentCompanyReferenceURL": {
+            "type": "string",
+            "description": "A reference URL (for example, a news article or company document) that supports the identified ownership relationship."
+          },
+          "Credits": {
+            "type": "string",
+            "description": "Remaining credits for your API license after this call, returned as a string."
+          },
+          "Code": {
+            "type": "string",
+            "description": "Response status code. `\"Success\"` indicates a successful call."
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ]
+}
