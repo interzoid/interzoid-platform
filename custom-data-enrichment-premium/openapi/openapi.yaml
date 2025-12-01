@@ -1,0 +1,293 @@
+openapi: 3.1.0
+info:
+  title: Interzoid AI Custom Data API
+  description: >
+    This API enables you to generate and append custom external data to a
+    single input value in real time using AI models, machine learning, and
+    specialized algorithms. You define the topic and output fields you want,
+    and the API returns structured JSON that matches your specification.
+
+    Typical use cases include enriching CRM and marketing data, adding
+    business or demographic attributes for analytics, and generating
+    additional fields for AI and machine learning training datasets.
+
+    To use this API, you need an API key. Register for an API key at
+    https://www.interzoid.com/register-api-account.
+
+    For more information about this API, visit:
+    https://www.interzoid.com/apis/ai-custom-data.
+
+    You can also try this API interactively at https://data.interzoid.com
+    (AI Interactive Data Client) or use it in high-speed batch mode at
+    https://batch.interzoid.com.
+  version: 1.0.0
+  termsOfService: https://www.interzoid.com/api-terms-use
+  contact:
+    name: Interzoid Support
+    url: https://www.interzoid.com
+    email: support@interzoid.com
+
+externalDocs:
+  description: AI Custom Data API home page and documentation
+  url: https://www.interzoid.com/apis/ai-custom-data
+
+servers:
+  - url: https://api.interzoid.com
+    description: Production server
+
+tags:
+  - name: AI Custom Data
+    description: >
+      Generate and append custom external data to single values in real time,
+      based on user-defined topics and output fields.
+
+paths:
+  /getcustom:
+    get:
+      operationId: getCustomData
+      tags:
+        - AI Custom Data
+      summary: Generate custom data for a single input value
+      description: >
+        Generates custom, AI-enriched data for a single input value (the
+        `lookup` parameter) based on a topic and list of output fields that
+        you define.
+
+        This API is ideal for:
+        - Enriching CRM and marketing records
+        - Adding external business or demographic attributes
+        - Creating additional features for analytics and AI models
+        - Real-time data retrieval to power applications and workflows
+
+        You can provide your API key either as:
+
+        * A `license` query parameter, or
+        * An `x-api-key` HTTP header (recommended for production).
+
+        Register for an API key at https://www.interzoid.com/register-api-account.
+      security:
+        - apiKeyHeader: []
+        - apiKeyQuery: []
+      parameters:
+        - name: license
+          in: query
+          required: false
+          description: >
+            Your API license key when passed via query string. Register for an
+            API key at https://www.interzoid.com/register-api-account.
+
+            For production, it is recommended to use the `x-api-key` header
+            instead of the query string.
+          schema:
+            type: string
+          examples:
+            license:
+              summary: API key via query parameter
+              value: "fh5hs7*****"
+        - name: topic
+          in: query
+          required: true
+          description: >
+            A natural language description of the kind of data you want
+            returned. This helps guide the AI model.
+
+            Example topics:
+            * "detailed information about companies"
+            * "demographic information about people"
+            * "information about U.S. cities"
+          schema:
+            type: string
+          examples:
+            topic:
+              summary: Topic example
+              value: "detailed information about companies"
+        - name: lookup
+          in: query
+          required: true
+          description: >
+            The single input value the custom data should be generated for.
+            This might be a company name, person name, product name, city,
+            or any other value appropriate for the chosen topic.
+          schema:
+            type: string
+          examples:
+            lookup:
+              summary: Lookup value example
+              value: "IBM"
+        - name: model
+          in: query
+          required: false
+          description: >
+            The AI model configuration to use for this request. Different
+            models control which sources are used, depth of enrichment, and
+            performance characteristics.
+
+            Common values include:
+            * `default` - Default AI model for the API.
+            * `model-a` - Standard model with broad coverage.
+            * `model-a-premium` - Higher-depth model with additional data
+              sources; recommended for richer enrichment.
+            * `model-x` - Alternative model optimized for certain use cases.
+            * `model-x-premium` - Higher-depth version of `model-x`.
+
+            For a current list of supported models and credit usage, see the
+            Interzoid AI model documentation.
+          schema:
+            type: string
+          examples:
+            model:
+              summary: Model example
+              value: "default"
+        - name: output
+          in: query
+          required: true
+          description: >
+            A JSON array (as a string) of the fields you want returned in the
+            response. Each element becomes a key in the returned JSON object.
+
+            For example:
+            ["headquarters","ceo","website","number of employees",
+             "ticker symbol","2023 revenue","2022 revenue"]
+
+            Make sure the value is URL-encoded when sent on the query string.
+          schema:
+            type: string
+          examples:
+            output:
+              summary: Output fields example
+              value: '["headquarters","ceo","website","number of employees","ticker symbol","2023 revenue","2022 revenue"]'
+      responses:
+        '200':
+          description: Successful response containing custom-generated data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomDataResponse'
+              examples:
+                success:
+                  summary: Successful custom data response
+                  value:
+                    headquarters: "Armonk, New York, United States"
+                    ceo: "Arvind Krishna"
+                    website: "https://www.ibm.com"
+                    number of employees: "288,300"
+                    ticker symbol: "IBM"
+                    2023 revenue: "$77.1 billion"
+                    2022 revenue: "$60.5 billion"
+                    Code: "Success"
+                    Credits: "200983"
+        '400':
+          description: Bad request (for example, missing or invalid parameters).
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Missing or invalid parameter example
+                  value: "Invalid license key, topic, lookup, or output parameters."
+        '402':
+          description: API key not found or not recognized.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: API key not found example
+                  value: "API key not found."
+        '403':
+          description: Insufficient API credits remaining for the given license key.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Insufficient credits example
+                  value: "Insufficient API credits remaining."
+        '405':
+          description: Method not allowed (only GET is supported).
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Method not allowed example
+                  value: "Method not allowed."
+        '429':
+          description: Rate limit reached for the given license key.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Rate limit example
+                  value: "Rate limits reached."
+        '500':
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Internal error example
+                  value: "Internal server error."
+      x-codeSamples:
+        - lang: curl
+          label: cURL (API key in header)
+          source: |
+            curl --header "x-api-key: YOUR_API_KEY" \
+              "https://api.interzoid.com/getcustom?topic=detailed%20information%20about%20companies&lookup=IBM&model=default&output=[\"headquarters\",\"ceo\",\"website\",\"number%20of%20employees\",\"ticker%20symbol\",\"2023%20revenue\",\"2022%20revenue\"]"
+        - lang: curl
+          label: cURL (API key in query)
+          source: |
+            curl "https://api.interzoid.com/getcustom?license=YOUR_API_KEY&topic=detailed%20information%20about%20companies&lookup=IBM&model=default&output=[\"headquarters\",\"ceo\",\"website\",\"number%20of%20employees\",\"ticker%20symbol\",\"2023%20revenue\",\"2022%20revenue\"]"
+
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: >
+        API key passed in the `x-api-key` header. Recommended for production
+        usage to avoid exposing keys in URLs.
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: license
+      description: >
+        API key passed in the `license` query parameter. Suitable for quick
+        testing and simple integrations.
+  schemas:
+    CustomDataResponse:
+      type: object
+      description: >
+        Response payload for a successful AI Custom Data request. The keys
+        returned will correspond to the fields requested in `output`, plus
+        standard metadata fields such as `Code` and `Credits`.
+      required:
+        - Code
+      properties:
+        Code:
+          type: string
+          description: >
+            Response status code. `"Success"` indicates a successful call.
+        Credits:
+          type: string
+          description: >
+            Remaining credits for your API license after this call, returned as
+            a string.
+      additionalProperties:
+        type: string
+        description: >
+          Custom data fields generated based on the `topic`, `lookup`, and
+          `output` parameters (for example, "headquarters", "ceo", etc.).
+
+security:
+  - apiKeyHeader: []
+  - apiKeyQuery: []

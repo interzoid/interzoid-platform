@@ -1,0 +1,274 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Interzoid Email Trust Score API",
+    "description": "This API provides an intelligent email trust score from 0–99 that reflects the likelihood an email belongs to a real person at a real business. The scoring algorithm evaluates domain type, DNS health, mail server reputation, local-part quality, domain reputation, address structure, free email sources, disposable email sources, and business fit to help you qualify leads, prevent fraud, trigger business processes, and optimize your sales and marketing workflows.\n\nTo use this API, you need an API key. Register for an API key at\nhttps://www.interzoid.com/register-api-account.\n\nFor more information about this API, visit:\nhttps://www.interzoid.com/apis/email-trust-score.\n\nYou can also try this API interactively at https://try.interzoid.com or use it in high-speed batch mode at https://batch.interzoid.com.",
+    "version": "1.0.0",
+    "termsOfService": "https://www.interzoid.com/api-terms-use",
+    "contact": {
+      "name": "Interzoid Support",
+      "url": "https://www.interzoid.com",
+      "email": "support@interzoid.com"
+    }
+  },
+  "externalDocs": {
+    "description": "Email Trust Score API home page and documentation",
+    "url": "https://www.interzoid.com/apis/email-trust-score"
+  },
+  "servers": [
+    {
+      "url": "https://api.interzoid.com",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Email Trust Score",
+      "description": "Evaluate email address quality with an intelligent trust score from 0–99 for lead qualification, fraud prevention, and business process automation."
+    }
+  ],
+  "paths": {
+    "/emailtrustscore": {
+      "get": {
+        "operationId": "getEmailTrustScore",
+        "tags": [
+          "Email Trust Score"
+        ],
+        "summary": "Evaluate email quality with a trust score from 0–99",
+        "description": "Evaluates a single email address and returns:\n\n* A trust score from 0–99 (higher is better)\n* A detailed reasoning string explaining why the score was generated\n* Remaining API credits\n* A status code indicating success or error\n\nTypical use cases include:\n* Lead qualification and scoring\n* Fraud and abuse detection\n* Business process routing based on email quality\n* Data hygiene and contact database cleanup\n\nYou can provide your API key either as:\n\n* A `license` query parameter, or\n* An `x-api-key` HTTP header (recommended for production).\n\nRegister for an API key at https://www.interzoid.com/register-api-account.",
+        "security": [
+          {
+            "apiKeyHeader": []
+          },
+          {
+            "apiKeyQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "license",
+            "in": "query",
+            "required": false,
+            "description": "Your API license key when passed via query string. Register for an API key at https://www.interzoid.com/register-api-account.\n\nFor production, it is recommended to use the `x-api-key` header instead of the query string.",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "license": {
+                "summary": "API key via query parameter",
+                "value": "fh5hs7*****"
+              }
+            }
+          },
+          {
+            "name": "lookup",
+            "in": "query",
+            "required": true,
+            "description": "The email address to evaluate and score. The trust score will reflect the quality and legitimacy of this email address.",
+            "schema": {
+              "type": "string",
+              "format": "email"
+            },
+            "examples": {
+              "email": {
+                "summary": "Email example",
+                "value": "billsmith11@gmail.com"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing the email trust score.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailTrustScoreResponse"
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Successful trust score response",
+                    "value": {
+                      "Email": "billsmith11@gmail.com",
+                      "Score": "65",
+                      "Reasoning": "Gmail domain provides medium score due to free webmail status, but realistic name pattern 'billsmith' with number suggests legitimate personal use, though lacks business domain verification.",
+                      "Code": "Success",
+                      "Credits": "591447"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (for example, missing or invalid parameters).",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "summary": "Missing or invalid parameter example",
+                    "value": "Invalid license key or email address missing."
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "API key not found or not recognized.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "summary": "API key not found example",
+                    "value": "API key not found."
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient API credits remaining for the given license key.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "summary": "Insufficient credits example",
+                    "value": "Insufficient API credits remaining."
+                  }
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed (only GET is supported).",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "summary": "Method not allowed example",
+                    "value": "Method not allowed."
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit reached for the given license key.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "summary": "Rate limit example",
+                    "value": "Rate limits reached."
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "error": {
+                    "summary": "Internal error example",
+                    "value": "Internal server error."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "curl",
+            "label": "cURL (API key in header)",
+            "source": "curl --header \"x-api-key: YOUR_API_KEY\" \\\n  \"https://api.interzoid.com/emailtrustscore?lookup=billsmith11@gmail.com\""
+          },
+          {
+            "lang": "curl",
+            "label": "cURL (API key in query)",
+            "source": "curl \"https://api.interzoid.com/emailtrustscore?license=YOUR_API_KEY&lookup=billsmith11@gmail.com\""
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKeyHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "API key passed in the `x-api-key` header. Recommended for production usage to avoid exposing keys in URLs."
+      },
+      "apiKeyQuery": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "license",
+        "description": "API key passed in the `license` query parameter. Suitable for quick testing and simple integrations."
+      }
+    },
+    "schemas": {
+      "EmailTrustScoreResponse": {
+        "type": "object",
+        "description": "Response payload for a successful Email Trust Score request.",
+        "required": [
+          "Email",
+          "Score",
+          "Reasoning",
+          "Code"
+        ],
+        "properties": {
+          "Email": {
+            "type": "string",
+            "format": "email",
+            "description": "The email address that was evaluated."
+          },
+          "Score": {
+            "type": "string",
+            "description": "Trust score from 0–99 as a string (higher indicates better quality and higher trust)."
+          },
+          "Reasoning": {
+            "type": "string",
+            "description": "Human-readable explanation of the factors that contributed to the score (for example, domain type, DNS health, reputation, disposable status, and local-part quality)."
+          },
+          "Credits": {
+            "type": "string",
+            "description": "Remaining credits for your API license after this call, returned as a string."
+          },
+          "Code": {
+            "type": "string",
+            "description": "Response status code. `\"Success\"` indicates a successful call."
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ]
+}
