@@ -1,8 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Interzoid Get Business Info API",
-    "description": "This API retrieves comprehensive business intelligence data for a company, including company profiles, financial metrics, employee counts, executive information, and industry classifications. It uses advanced data aggregation, AI processing, and multiple premium data sources to deliver rich business data in a single call.\n\nYou can provide a company name, web domain, or email address as the lookup value.\n\nTypical use cases include:\n* Lead and account enrichment in CRM/marketing systems\n* Risk and compliance checks on counterparties\n* Fraud detection and business legitimacy analysis\n* Market intelligence, segmentation, and analytics\n\nThis is a premium API and consumes additional credits.\n\nTo use this API, you need an API key. Register for an API key at\nhttps://www.interzoid.com/register-api-account.\n\nFor more information about this API, visit:\nhttps://www.interzoid.com/apis/get-business-info.\n\nYou can also try this API interactively at https://data.interzoid.com\n(AI Interactive Data Client) or use it in high-speed batch mode at\nhttps://batch.interzoid.com.",
+    "title": "Interzoid Get Parent Company Info API",
+    "description": "This API provides detailed ultimate parent company information for a given company or domain, including parent company identification, headquarters location, reference URLs, and other corporate details. Simply provide a company name or domain name to discover its parent organization and ownership relationships.\n\nTo use this API, you need an API key. Register for an API key at\nhttps://www.interzoid.com/register-api-account.\n\nFor more information about this API, visit:\nhttps://www.interzoid.com/apis/get-parent-company-info.\n\nYou can also try this API interactively at https://data.interzoid.com\n(AI Interactive Data Client) or use it in high-speed batch mode at\nhttps://batch.interzoid.com.",
     "version": "1.0.0",
     "termsOfService": "https://www.interzoid.com/api-terms-use",
     "contact": {
@@ -12,8 +12,8 @@
     }
   },
   "externalDocs": {
-    "description": "Get Business Info API home page and documentation",
-    "url": "https://www.interzoid.com/apis/get-business-info"
+    "description": "Get Parent Company Info API home page and documentation",
+    "url": "https://www.interzoid.com/apis/get-parent-company-info"
   },
   "servers": [
     {
@@ -23,19 +23,19 @@
   ],
   "tags": [
     {
-      "name": "Business Info",
-      "description": "Retrieve comprehensive firmographic, financial, and executive information for businesses worldwide using a single API call."
+      "name": "Parent Company Info",
+      "description": "Discover ultimate parent companies, ownership structures, and corporate relationships for organizations worldwide."
     }
   ],
   "paths": {
-    "/getbusinessinfo": {
+    "/getparentcompanyinfo": {
       "get": {
-        "operationId": "getBusinessInfo",
+        "operationId": "getParentCompanyInfo",
         "tags": [
-          "Business Info"
+          "Parent Company Info"
         ],
-        "summary": "Retrieve comprehensive business information",
-        "description": "Retrieves business intelligence data for a single company based on a company name, web domain, or email address. The response can include:\n\n* Official company name\n* Primary website URL\n* Headquarters location\n* Business description\n* Revenue data\n* Employee count\n* Industry classification (NAICS)\n* Top executive name and title\n* Remaining credits and response status code\n\nYou can provide your API key either as:\n\n* A `license` query parameter, or\n* An `x-api-key` HTTP header (recommended for production).\n\nRegister for an API key at https://www.interzoid.com/register-api-account.",
+        "summary": "Retrieve ultimate parent company information",
+        "description": "Retrieves detailed ultimate parent company information for a given company or domain name, including:\n\n* Original company name and website\n* Parent company name and website\n* Parent company headquarters location\n* Parent company business description\n* Reference URL(s) supporting the ownership relationship\n* Remaining credits and status code\n\nTypical use cases include:\n* Mapping corporate hierarchies for risk and compliance\n* Understanding customer and vendor ownership structures\n* Enhancing B2B datasets for analytics and segmentation\n* Supporting due diligence and research workflows\n\nYou can provide your API key either as:\n\n* A `license` query parameter, or\n* An `x-api-key` HTTP header (recommended for production).\n\nRegister for an API key at https://www.interzoid.com/register-api-account.",
         "security": [
           {
             "apiKeyHeader": []
@@ -64,49 +64,43 @@
             "name": "lookup",
             "in": "query",
             "required": true,
-            "description": "The identifier used to look up the business. This may be a company name, a primary web domain, or an email address associated with the business.",
+            "description": "The company name or domain name for which the parent company information should be retrieved. This can be a brand name, legal company name, or primary web domain.",
             "schema": {
               "type": "string"
             },
             "examples": {
               "companyName": {
                 "summary": "Company name example",
-                "value": "Cisco"
+                "value": "Informatica"
               },
               "domain": {
                 "summary": "Domain example",
-                "value": "cisco.com"
-              },
-              "email": {
-                "summary": "Email example",
-                "value": "someone@cisco.com"
+                "value": "informatica.com"
               }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Successful response containing business intelligence data.",
+            "description": "Successful response containing ultimate parent company information.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BusinessInfoResponse"
+                  "$ref": "#/components/schemas/ParentCompanyInfoResponse"
                 },
                 "examples": {
                   "success": {
-                    "summary": "Successful business info response",
+                    "summary": "Successful parent company info response",
                     "value": {
-                      "CompanyName": "Cisco Systems, Inc.",
-                      "CompanyURL": "cisco.com",
-                      "CompanyLocation": "170 West Tasman Drive, San Jose, California, 95134",
-                      "CompanyDescription": "Cisco Systems, Inc. designs, manufactures, and sells Internet Protocol-based networking and other products related to the communications and information technology industry worldwide. The company offers switching products, data center products, and wireless access points for use in voice, video, and data applications. Cisco also provides collaboration products comprising unified communications, TelePresence, and conferencing, as well as the Internet of Things and analytics software.",
-                      "Revenue": "$56.7 billion",
-                      "NumberEmployees": "90,400",
-                      "NAICS": "511210",
-                      "TopExecutive": "Chuck Robbins",
-                      "TopExecutiveTitle": "Chairman and Chief Executive Officer",
+                      "CompanyName": "Informatica",
+                      "CompanyURL": "informatica.com",
+                      "ParentCompany": "Salesforce",
+                      "ParentCompanyLocation": "San Francisco, California, United States",
+                      "ParentCompanyURL": "salesforce.com",
+                      "ParentCompanyDescription": "American cloud-based software company that provides applications focused on sales, customer service, marketing automation, e-commerce, analytics, artificial intelligence, and application development.",
+                      "ParentCompanyReferenceURL": "https://www.cnbc.com/2025/05/27/salesforce-informatica-deal.html",
                       "Code": "Success",
-                      "Credits": "20088337"
+                      "Credits": "443222"
                     }
                   }
                 }
@@ -214,12 +208,12 @@
           {
             "lang": "curl",
             "label": "cURL (API key in header)",
-            "source": "curl --header \"x-api-key: YOUR_API_KEY\" \\\n  \"https://api.interzoid.com/getbusinessinfo?lookup=Cisco\""
+            "source": "curl --header \"x-api-key: YOUR_API_KEY\" \\\n  \"https://api.interzoid.com/getparentcompanyinfo?lookup=informatica\""
           },
           {
             "lang": "curl",
             "label": "cURL (API key in query)",
-            "source": "curl \"https://api.interzoid.com/getbusinessinfo?license=YOUR_API_KEY&lookup=Cisco\""
+            "source": "curl \"https://api.interzoid.com/getparentcompanyinfo?license=YOUR_API_KEY&lookup=informatica\""
           }
         ]
       }
@@ -241,52 +235,42 @@
       }
     },
     "schemas": {
-      "BusinessInfoResponse": {
+      "ParentCompanyInfoResponse": {
         "type": "object",
-        "description": "Response payload for a successful Get Business Info request, including firmographic, financial, and executive data for the requested company.",
+        "description": "Response payload for a successful Get Parent Company Info request, including original company details and its ultimate parent information.",
         "required": [
           "CompanyName",
-          "CompanyURL",
-          "CompanyLocation",
-          "CompanyDescription",
+          "ParentCompany",
           "Code"
         ],
         "properties": {
           "CompanyName": {
             "type": "string",
-            "description": "Official company name for the identified business."
+            "description": "The original company name that was searched."
           },
           "CompanyURL": {
             "type": "string",
-            "description": "Primary website domain for the company."
+            "description": "The primary website domain associated with the original company."
           },
-          "CompanyLocation": {
+          "ParentCompany": {
             "type": "string",
-            "description": "Corporate headquarters address, typically including street, city, region, and postal code."
+            "description": "The identified ultimate parent company name."
           },
-          "CompanyDescription": {
+          "ParentCompanyLocation": {
             "type": "string",
-            "description": "Business description and primary activities of the company."
+            "description": "The parent company's headquarters location (typically city, region, and country)."
           },
-          "Revenue": {
+          "ParentCompanyURL": {
             "type": "string",
-            "description": "Annual revenue figure for the company, usually including a currency symbol and units (for example, \"$56.7 billion\")."
+            "description": "The primary website domain for the parent company."
           },
-          "NumberEmployees": {
+          "ParentCompanyDescription": {
             "type": "string",
-            "description": "Total number of employees at the company."
+            "description": "A brief description of the parent company’s business, operations, and focus areas."
           },
-          "NAICS": {
+          "ParentCompanyReferenceURL": {
             "type": "string",
-            "description": "NAICS industry classification code for the company."
-          },
-          "TopExecutive": {
-            "type": "string",
-            "description": "Name of the top company executive (for example, CEO)."
-          },
-          "TopExecutiveTitle": {
-            "type": "string",
-            "description": "Title or position of the top company executive."
+            "description": "A reference URL (for example, a news article or company document) that supports the identified ownership relationship."
           },
           "Credits": {
             "type": "string",
