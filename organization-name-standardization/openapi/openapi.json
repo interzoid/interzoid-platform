@@ -1,0 +1,221 @@
+openapi: 3.1.0
+info:
+  title: Interzoid Organization Name Standardization API
+  description: >
+    This API standardizes organization and company names into their official
+    or canonical versions using an AI-powered closest-match algorithm. It
+    handles abbreviations, alternate spellings, typos, and multi-language
+    variations, converting them into standardized English equivalents for
+    cleaner analytics, deduplication, and consistent records.
+
+    To use this API, you need an API key. Register for an API key at
+    https://www.interzoid.com/register-api-account.
+
+    For more information about this API, visit:
+    https://www.interzoid.com/apis/get-org-standard.
+
+    You can also try this API interactively at https://try.interzoid.com or
+    use it in high-speed batch mode at https://batch.interzoid.com.
+  version: 1.0.0
+  termsOfService: https://www.interzoid.com/api-terms-use
+  contact:
+    name: Interzoid Support
+    url: https://www.interzoid.com
+    email: support@interzoid.com
+
+externalDocs:
+  description: Organization Name Standardization API home page and documentation
+  url: https://www.interzoid.com/apis/get-org-standard
+
+servers:
+  - url: https://api.interzoid.com
+    description: Production server
+
+tags:
+  - name: Organization Name Standardization
+    description: >
+      Standardize messy, abbreviated, or multilingual organization names into
+      a single canonical form for data quality, deduplication, and analytics.
+
+paths:
+  /getorgstandard:
+    get:
+      operationId: getOrgStandard
+      tags:
+        - Organization Name Standardization
+      summary: Standardize an organization or company name
+      description: >
+        Standardizes a given organization or company name into an official or
+        canonical form using an advanced AI-powered closest-match algorithm.
+
+        This API is ideal for normalizing messy, abbreviated, or multilingual
+        organization names across your systems. Common use cases include CRM
+        cleanup, deduplication, analytics, and creating a consistent master
+        record for each organization.
+
+        You can provide your API key either as:
+
+        * A `license` query parameter, or
+        * An `x-api-key` HTTP header (recommended for production).
+
+        Register for an API key at https://www.interzoid.com/register-api-account.
+      security:
+        - apiKeyHeader: []
+        - apiKeyQuery: []
+      parameters:
+        - name: license
+          in: query
+          required: false
+          description: >
+            Your API license key when passed via query string. Register for an
+            API key at https://www.interzoid.com/register-api-account.
+
+            For production, it is recommended to use the `x-api-key` header
+            instead of the query string.
+          schema:
+            type: string
+          examples:
+            license:
+              summary: API key via query parameter
+              value: "fh5hs7*****"
+        - name: org
+          in: query
+          required: true
+          description: >
+            The organization or company name to standardize. This can be any
+            variation, including abbreviations, localized forms, or names with
+            punctuation differences.
+          schema:
+            type: string
+          examples:
+            org:
+              summary: Organization name example
+              value: "B.O.A."
+      responses:
+        '200':
+          description: Successful response containing the standardized organization name.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrgStandardResponse'
+              examples:
+                success:
+                  summary: Successful standardization response
+                  value:
+                    Standard: "Bank of America"
+                    Code: "Success"
+                    Credits: "587332"
+        '400':
+          description: Bad request (for example, missing or invalid parameters).
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Missing or invalid parameter example
+                  value: "Invalid license key or organization name missing."
+        '402':
+          description: API key not found or not recognized.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: API key not found example
+                  value: "API key not found."
+        '403':
+          description: Insufficient API credits remaining for the given license key.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Insufficient credits example
+                  value: "Insufficient API credits remaining."
+        '405':
+          description: Method not allowed (only GET is supported).
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Method not allowed example
+                  value: "Method not allowed."
+        '429':
+          description: Rate limit reached for the given license key.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Rate limit example
+                  value: "Rate limits reached."
+        '500':
+          description: Internal server error.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                error:
+                  summary: Internal error example
+                  value: "Internal server error."
+      x-codeSamples:
+        - lang: curl
+          label: cURL (API key in header)
+          source: |
+            curl --header "x-api-key: YOUR_API_KEY" \
+              "https://api.interzoid.com/getorgstandard?org=b.o.a."
+        - lang: curl
+          label: cURL (API key in query)
+          source: |
+            curl "https://api.interzoid.com/getorgstandard?license=YOUR_API_KEY&org=b.o.a."
+
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: >
+        API key passed in the `x-api-key` header. Recommended for production
+        usage to avoid exposing keys in URLs.
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: license
+      description: >
+        API key passed in the `license` query parameter. Suitable for quick
+        testing and simple integrations.
+  schemas:
+    OrgStandardResponse:
+      type: object
+      description: Response payload for a successful organization name standardization request.
+      required:
+        - Standard
+        - Code
+      properties:
+        Standard:
+          type: string
+          description: >
+            The standardized, canonical organization name. This is the value
+            you should persist and use for reporting, grouping, deduplication,
+            and downstream enrichment.
+        Credits:
+          type: string
+          description: >
+            Remaining credits for your API license after this call, returned as
+            a string.
+        Code:
+          type: string
+          description: >
+            Response status code. `"Success"` indicates a successful call.
+
+security:
+  - apiKeyHeader: []
+  - apiKeyQuery: []
