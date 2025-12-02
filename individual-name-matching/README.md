@@ -134,7 +134,7 @@ Yousef Goldstein,rmWKCF8mqDRg9km5j0T9n5STdca2k5VmkXyidcjJiNg
 
 <i>Generates a single similarity key for each entry of a text file, sorts results by simkey, and then writes clusters of matching records based on simkey to an output file:</i>
 
-
+<br>
 
 Gerhard Schroeder,Zzr4ig2wT4ku4i-ECU3uEYDCCglk5r2nbYmGOkMqw5g
 
