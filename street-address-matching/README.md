@@ -83,37 +83,21 @@ There are three code examples for each language platform:
 <br>
 
 
-
 ```
-
 1000 Fourth Street E,D-s\_xMgAYDMeS-QKmx8TUYERxwIQ2MvvYuHag-c6KP8
-
 7000 Cleaveland Rd,3AA8t1cfCYFWTksqKc-dYovygw2rFZdX8Ca3gUpNLr4
-
 1000 4th St. East,D-s\_xMgAYDMeS-QKmx8TUYERxwIQ2MvvYuHag-c6KP8
-
 455 E Main St,jpI9RHfHiqb3YI9a\_l24xlUegbQblCgWloO8zgHj2KM
-
 455 East Main,jpI9RHfHiqb3YI9a\_l24xlUegbQblCgWloO8zgHj2KM
-
 455 Main Street,jpI9RHfHiqb3YI9a\_l24xlUegbQblCgWloO8zgHj2KM
-
 7000 Cleveland Road,3AA8t1cfCYFWTksqKc-dYovygw2rFZdX8Ca3gUpNLr4
-
 9000 e calif rd,2cG04SeRG6l6ZVMXG9KKpmko94upcRCtFWCuPUY7eoU
-
 9000 east california road,2cG04SeRG6l6ZVMXG9KKpmko94upcRCtFWCuPUY7eoU
-
 1777 st louis rd,mR2UVAsZr0uvhGNm\_5IcLnw8d7LZeQvvDVdJgBT6FiQ
-
 500 Browne lane suite #100,PeVZhCEmoRElwGqgIIP\_49G30ywPU5oLYEgbVxX2QwA
-
 1777 saint louis raod,mR2UVAsZr0uvhGNm\_5IcLnw8d7LZeQvvDVdJgBT6FiQ
-
 500 Browne ln suite 100,PeVZhCEmoRElwGqgIIP\_49G30ywPU5oLYEgbVxX2QwA
-
 500 brown lane ste 100,PeVZhCEmoRElwGqgIIP\_49G30ywPU5oLYEgbVxX2QwA
-
 ```
 
 
@@ -141,45 +125,25 @@ There are three code examples for each language platform:
 
 
 ```
-
 9000 e calif rd,2cG04SeRG6l6ZVMXG9KKpmko94upcRCtFWCuPUY7eoU
-
 9000 east california road,2cG04SeRG6l6ZVMXG9KKpmko94upcRCtFWCuPUY7eoU
 
-
-
 7000 Cleaveland Rd,3AA8t1cfCYFWTksqKc-dYovygw2rFZdX8Ca3gUpNLr4
-
 7000 Cleveland Road,3AA8t1cfCYFWTksqKc-dYovygw2rFZdX8Ca3gUpNLr4
 
-
-
 1000 4th St. East,D-s\_xMgAYDMeS-QKmx8TUYERxwIQ2MvvYuHag-c6KP8
-
 1000 Fourth Street E,D-s\_xMgAYDMeS-QKmx8TUYERxwIQ2MvvYuHag-c6KP8
 
-
-
 500 Browne lane suite #100,PeVZhCEmoRElwGqgIIP\_49G30ywPU5oLYEgbVxX2QwA
-
 500 brown lane ste 100,PeVZhCEmoRElwGqgIIP\_49G30ywPU5oLYEgbVxX2QwA
-
 500 Browne ln suite 100,PeVZhCEmoRElwGqgIIP\_49G30ywPU5oLYEgbVxX2QwA
 
-
-
 455 E Main St,jpI9RHfHiqb3YI9a\_l24xlUegbQblCgWloO8zgHj2KM
-
 455 Main Street,jpI9RHfHiqb3YI9a\_l24xlUegbQblCgWloO8zgHj2KM
-
 455 East Main,jpI9RHfHiqb3YI9a\_l24xlUegbQblCgWloO8zgHj2KM
 
-
-
 1777 st louis rd,mR2UVAsZr0uvhGNm\_5IcLnw8d7LZeQvvDVdJgBT6FiQ
-
 1777 saint louis raod,mR2UVAsZr0uvhGNm\_5IcLnw8d7LZeQvvDVdJgBT6FiQ
-
 ```
 
 
