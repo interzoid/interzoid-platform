@@ -55,9 +55,7 @@ There are three code examples for each language platform:
 
 
 ```
-
 455 Main Street -> jpI9RHfHiqb3YI9a\_l24xlUegbQblCgWloO8zgHj2KM
-
 ```
 
 
