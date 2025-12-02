@@ -25,9 +25,11 @@ There are three code examples for each language platform:
 <i>Generates a single similarity key used for matching or searching purposes:</i>
 
 <br>
+
 ```
 IBM -> edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs
 ```
+
 <br>
 <br>
 
@@ -38,6 +40,7 @@ IBM -> edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs
 <i>Generates a single similarity key for each entry of a text file (see sample input file):</i>
 
 <br>
+
 ```
 IBM,edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs
 
@@ -78,6 +81,7 @@ Intl bus machines,edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs
 <i>Generates a single similarity key for each entry of a text file, sorts results by simkey, and then writes clusters of matching records based on simkey to an output file:</i>
 
 <br>
+
 ```
 IBM,edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs
 
