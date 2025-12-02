@@ -148,27 +148,15 @@ There are three code examples for each language platform:
 
 
 
-<br>
-
-
-
 7000 Cleaveland Rd,3AA8t1cfCYFWTksqKc-dYovygw2rFZdX8Ca3gUpNLr4
 
 7000 Cleveland Road,3AA8t1cfCYFWTksqKc-dYovygw2rFZdX8Ca3gUpNLr4
 
 
 
-<br>
-
-
-
 1000 4th St. East,D-s\_xMgAYDMeS-QKmx8TUYERxwIQ2MvvYuHag-c6KP8
 
 1000 Fourth Street E,D-s\_xMgAYDMeS-QKmx8TUYERxwIQ2MvvYuHag-c6KP8
-
-
-
-<br>
 
 
 
@@ -180,19 +168,11 @@ There are three code examples for each language platform:
 
 
 
-<br>
-
-
-
 455 E Main St,jpI9RHfHiqb3YI9a\_l24xlUegbQblCgWloO8zgHj2KM
 
 455 Main Street,jpI9RHfHiqb3YI9a\_l24xlUegbQblCgWloO8zgHj2KM
 
 455 East Main,jpI9RHfHiqb3YI9a\_l24xlUegbQblCgWloO8zgHj2KM
-
-
-
-<br>
 
 
 
