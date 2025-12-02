@@ -27,7 +27,7 @@ There are three code examples for each language platform:
 <br>
 
 ```
-'IBM -> edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs'
+IBM -> edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs
 ```
 
 <br>

@@ -59,9 +59,9 @@ There are three code examples for each language platform:
 <br>
 
 
-
+```
 Jim Johnston -> oKeU1apfGYSkKsWqxvvRiam\_RJHnsDp-e0K2JJ-eaDI
-
+```
 
 
 <br>
@@ -85,7 +85,7 @@ Jim Johnston -> oKeU1apfGYSkKsWqxvvRiam\_RJHnsDp-e0K2JJ-eaDI
 <br>
 
 
-
+```
 Jim Johnson,oKeU1apfGYSkKsWqxvvRiam\_RJHnsDp-e0K2JJ-eaDI
 
 Sally Anderson,fOjMwYe9hOgKTa5LCDruK-NgkyDzasOV9Fqf-luTWXw
@@ -113,7 +113,7 @@ james johnston,oKeU1apfGYSkKsWqxvvRiam\_RJHnsDp-e0K2JJ-eaDI
 Herr Geahardt Shroder,Zzr4ig2wT4ku4i-ECU3uEYDCCglk5r2nbYmGOkMqw5g
 
 Yousef Goldstein,rmWKCF8mqDRg9km5j0T9n5STdca2k5VmkXyidcjJiNg
-
+```
 
 
 
@@ -136,51 +136,22 @@ Yousef Goldstein,rmWKCF8mqDRg9km5j0T9n5STdca2k5VmkXyidcjJiNg
 
 <br>
 
+```
 Gerhard Schroeder,Zzr4ig2wT4ku4i-ECU3uEYDCCglk5r2nbYmGOkMqw5g
-
 Herr Geahardt Shroder,Zzr4ig2wT4ku4i-ECU3uEYDCCglk5r2nbYmGOkMqw5g
 
-
-
-<br>
-
-
-
 Sally Anderson,fOjMwYe9hOgKTa5LCDruK-NgkyDzasOV9Fqf-luTWXw
-
 Ms. Sallie Andersen,fOjMwYe9hOgKTa5LCDruK-NgkyDzasOV9Fqf-luTWXw
 
-
-
-<br>
-
-
-
 Jim Johnson,oKeU1apfGYSkKsWqxvvRiam\_RJHnsDp-e0K2JJ-eaDI
-
 james johnston,oKeU1apfGYSkKsWqxvvRiam\_RJHnsDp-e0K2JJ-eaDI
 
-
-
-<br>
-
-
-
 Yosif Gouldstine,rmWKCF8mqDRg9km5j0T9n5STdca2k5VmkXyidcjJiNg
-
 Yousef Goldstein,rmWKCF8mqDRg9km5j0T9n5STdca2k5VmkXyidcjJiNg
 
-
-
-<br>
-
-
-
 Jim Kelley,wSj\_mICOU22GjuhAyBrtk4bV6R-sK-83drNPEJ1z6tw
-
 Mr. Jim H. Kellie,wSj\_mICOU22GjuhAyBrtk4bV6R-sK-83drNPEJ1z6tw
-
 James Kelly,wSj\_mICOU22GjuhAyBrtk4bV6R-sK-83drNPEJ1z6tw
-
+```
 
 
