@@ -23,6 +23,8 @@
 ![Batch API](https://img.shields.io/badge/Batch-API-green)
 ![OpenAPI](https://img.shields.io/badge/OpenAPI-Spec-6BA539?logo=openapi-initiative&logoColor=white)
 ![API](https://img.shields.io/badge/API-Platform-brightgreen)
+[![Java](https://img.shields.io/badge/Java-11%2B-red?logo=openjdk&logoColor=white)](https://github.com/interzoid/interzoid-platform/search?q=java)
+
 
 
 
