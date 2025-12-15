@@ -24,6 +24,11 @@
 ![OpenAPI](https://img.shields.io/badge/OpenAPI-Spec-6BA539?logo=openapi-initiative&logoColor=white)
 ![API](https://img.shields.io/badge/API-Platform-brightgreen)
 [![Java](https://img.shields.io/badge/Java-11%2B-red?logo=openjdk&logoColor=white)](https://github.com/interzoid/interzoid-platform/search?q=java)
+[![Snowflake](https://img.shields.io/badge/Snowflake-Platform-29B5E8?logo=snowflake&logoColor=white)](https://www.snowflake.com/)
+[![Snowpark](https://img.shields.io/badge/Snowpark-Python%20%7C%20Java-4F46E5)](https://docs.snowflake.com/en/developer-guide/snowpark)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)](https://docs.snowflake.com/en/developer-guide/python-udf)
+[![SQL](https://img.shields.io/badge/SQL-Snowflake-blue?logo=postgresql&logoColor=white)](https://docs.snowflake.com/)
+
 
 
 
