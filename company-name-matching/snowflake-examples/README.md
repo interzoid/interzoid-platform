@@ -36,7 +36,7 @@ These examples demonstrate how to:
 
 
 
-Learn more about the API:
+Learn more about the API:  
 
 https://www.interzoid.com/apis/company-name-matching
 
@@ -96,15 +96,15 @@ Before using these examples, you will need:
 
 
 
-\- A Snowflake account
+\- A Snowflake account  
 
-  https://www.snowflake.com
+&nbsp; https://www.snowflake.com
 
 
 
-\- An Interzoid API key
+\- An Interzoid API key  
 
-  https://www.interzoid.com/manage-api-account
+&nbsp; https://www.interzoid.com/manage-api-account
 
 
 
@@ -112,7 +112,7 @@ Before using these examples, you will need:
 
 
 
-Optional background reading on Snowflake data matching:
+Optional background reading on Snowflake data matching:  
 
 https://blog.interzoid.com/technotes/snowflake-data-matching
 
@@ -150,7 +150,7 @@ Records with the same similarity key are likely to represent the same real-world
 
 
 
-API documentation and parameters:
+API documentation and parameters:  
 
 https://www.interzoid.com/apis/company-name-matching
 
@@ -220,13 +220,13 @@ Interzoid provides AI-powered APIs for \*\*data quality, data matching, and data
 
 
 
-Learn more about the Interzoid platform:
+Learn more about the Interzoid platform:  
 
 https://www.interzoid.com
 
 
 
-Main Interzoid GitHub repository:
+Main Interzoid GitHub repository:  
 
 https://github.com/interzoid/interzoid-platform
 
