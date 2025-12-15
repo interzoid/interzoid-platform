@@ -1,138 +1,234 @@
-<h1>Interzoid Company Name Matching – Snowflake Examples</h1>
+\# Interzoid Company Name Matching – Snowflake Examples
 
 
 
-Snowflake integration examples for the <strong>Interzoid Company Name Matching API</strong>, showing how to identify similar, inconsistent, or duplicate company and organization names using AI-generated similarity keys.
+Snowflake integration examples for the \*\*Interzoid Company Name Matching API\*\*, demonstrating how to identify similar, inconsistent, or duplicate company and organization names using AI-generated similarity keys.
 
 
 
-<h3>Overview</h3>
+These examples are intended for data engineers, analytics teams, and platform architects who want to improve \*\*data quality, entity resolution, and master data consistency\*\* in Snowflake.
 
-<ul>
 
-&nbsp; <li>Company names vary across datasets (abbreviations, legal suffixes, typos, formatting).</li>
 
-&nbsp; <li>The API generates a <strong>similarity key</strong> for each company name.</li>
+\## Overview
 
-&nbsp; <li>Records with the same similarity key are likely matches, enabling scalable fuzzy matching in Snowflake.</li>
 
-</ul>
 
+Company and organization names frequently appear in multiple formats across datasets due to abbreviations, legal suffix variations, misspellings, and formatting differences.
 
 
-<h3>What you can do with these examples</h3>
 
-<ul>
+The Interzoid Company Name Matching API generates a \*\*similarity key\*\* for each company name. Records that share the same similarity key are considered likely matches, enabling fast and scalable fuzzy matching inside Snowflake.
 
-&nbsp; <li>Load company name data into Snowflake</li>
 
-&nbsp; <li>Generate and store similarity keys using Interzoid APIs</li>
 
-&nbsp; <li>Create match reports for analytics and data cleansing</li>
+These examples demonstrate how to:
 
-&nbsp; <li>Enable deduplication and entity resolution workflows</li>
 
-</ul>
 
+\- Load company name data into Snowflake
 
+\- Generate and store similarity keys using Interzoid APIs
 
-<strong>API documentation:</strong>
+\- Create match reports for analytics and data cleansing
 
-<a href="https://www.interzoid.com/apis/company-name-matching">https://www.interzoid.com/apis/company-name-matching</a>
+\- Support deduplication and entity resolution workflows
 
 
 
-<h3>Why Interzoid + Snowflake</h3>
+Learn more about the API:  
 
-<ul>
+https://www.interzoid.com/apis/company-name-matching
 
-&nbsp; <li>Detect duplicate and near-duplicate company records</li>
 
-&nbsp; <li>Standardize company names across sources</li>
 
-&nbsp; <li>Improve joins where naming is inconsistent</li>
+\## Why Use Interzoid with Snowflake?
 
-&nbsp; <li>Prepare cleaner data for BI, reporting, and machine learning</li>
 
-</ul>
 
+Snowflake excels at analytics and data warehousing, but accurate matching of text-based entities like company names requires more than exact SQL comparisons.
 
 
-<h3>Contents</h3>
 
-<ul>
+Using Interzoid with Snowflake allows you to:
 
-&nbsp; <li>Snowflake SQL examples for loading company data</li>
 
-&nbsp; <li>Similarity key generation workflows</li>
 
-&nbsp; <li>Match report generation scripts</li>
+\- Detect duplicate and near-duplicate company records
 
-</ul>
+\- Standardize company names across data sources
 
+\- Improve joins between datasets with inconsistent naming
 
+\- Prepare cleaner data for BI, reporting, and machine learning
 
-<h3>Prerequisites</h3>
 
-<ul>
 
-&nbsp; <li>Snowflake account: <a href="https://www.snowflake.com">https://www.snowflake.com</a></li>
+Interzoid’s similarity keys make fuzzy matching efficient and repeatable at scale.
 
-&nbsp; <li>Interzoid API key: <a href="https://www.interzoid.com/manage-api-account">https://www.interzoid.com/manage-api-account</a></li>
 
-&nbsp; <li>Basic familiarity with Snowflake SQL and REST API calls</li>
 
-</ul>
+\## Contents
 
 
 
-<strong>Optional background reading:</strong>
+This directory includes example scripts and workflows such as:
 
-<a href="https://blog.interzoid.com/technotes/snowflake-data-matching">https://blog.interzoid.com/technotes/snowflake-data-matching</a>
 
 
+\- Snowflake SQL examples for loading company data
 
-<h3>Typical workflow</h3>
+\- Similarity key generation workflows
 
-<ul>
+\- Match report generation scripts
 
-&nbsp; <li><strong>Load data</strong> into a Snowflake table (company name + optional metadata).</li>
 
-&nbsp; <li><strong>Generate similarity keys</strong> by calling the Interzoid API for each name and storing the key in Snowflake.</li>
 
-&nbsp; <li><strong>Match and analyze</strong> by grouping on similarity key, identifying duplicates, and exporting match reports.</li>
+File names may change over time, but the workflow remains consistent.
 
-</ul>
 
 
+\## Prerequisites
 
-<h3>Example use cases</h3>
 
-<ul>
 
-&nbsp; <li>Master data management (MDM)</li>
+Before using these examples, you will need:
 
-&nbsp; <li>CRM and ERP cleanup</li>
 
-&nbsp; <li>Data warehouse deduplication</li>
 
-&nbsp; <li>Analytics accuracy improvements</li>
+\- A Snowflake account  
 
-&nbsp; <li>AI and machine learning data preparation</li>
+&nbsp; https://www.snowflake.com
 
-</ul>
 
 
+\- An Interzoid API key  
 
-<h3>About Interzoid</h3>
+&nbsp; https://www.interzoid.com/manage-api-account
 
-<ul>
 
-&nbsp; <li>Platform: <a href="https://www.interzoid.com">https://www.interzoid.com</a></li>
 
-&nbsp; <li>Main GitHub repo: <a href="https://github.com/interzoid/interzoid-platform">https://github.com/interzoid/interzoid-platform</a></li>
+\- Basic familiarity with Snowflake SQL and REST API calls
 
-</ul>
+
+
+Optional background reading on Snowflake data matching:  
+
+https://blog.interzoid.com/technotes/snowflake-data-matching
+
+
+
+\## Typical Workflow
+
+
+
+\### 1. Load Data
+
+
+
+Company names are loaded into a Snowflake table, typically including:
+
+
+
+\- Company name
+
+\- Optional metadata or description
+
+\- A similarity key column (added later)
+
+
+
+\### 2. Generate Similarity Keys
+
+
+
+Each company name is processed by the Interzoid Company Name Matching API to generate a similarity key, which is stored in Snowflake.
+
+
+
+Records with the same similarity key are likely to represent the same real-world company, even if the names differ.
+
+
+
+API documentation and parameters:  
+
+https://www.interzoid.com/apis/company-name-matching
+
+
+
+\### 3. Match and Analyze
+
+
+
+Once similarity keys are generated, Snowflake SQL can be used to:
+
+
+
+\- Group records by similarity key
+
+\- Identify duplicates and near-duplicates
+
+\- Export match reports for review
+
+\- Feed downstream analytics and data quality pipelines
+
+
+
+This approach avoids expensive string comparisons and scales well with large datasets.
+
+
+
+\## Example Use Cases
+
+
+
+These Snowflake examples are commonly used for:
+
+
+
+\- Master data management (MDM)
+
+\- CRM and ERP data cleanup
+
+\- Data warehouse deduplication
+
+\- Analytics and reporting accuracy
+
+\- AI and machine learning data preparation
+
+
+
+They work equally well for batch jobs or recurring scheduled workflows.
+
+
+
+\## About Interzoid
+
+
+
+Interzoid provides AI-powered APIs for \*\*data quality, data matching, and data enrichment\*\*, including:
+
+
+
+\- Company and organization name matching
+
+\- Individual name matching
+
+\- Address matching and standardization
+
+\- Business and parent company enrichment
+
+
+
+Learn more about the Interzoid platform:  
+
+https://www.interzoid.com
+
+
+
+Main Interzoid GitHub repository:  
+
+https://github.com/interzoid/interzoid-platform
 
 
 
