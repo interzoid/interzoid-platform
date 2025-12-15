@@ -2,45 +2,25 @@
 
 
 
-<p>
-
-Snowflake integration examples for the
-
-<strong>Interzoid Company Name Matching API</strong>,
-
-demonstrating how to identify similar, inconsistent, or duplicate company and organization names
-
-using AI-generated similarity keys.
-
-</p>
+Snowflake integration examples for the <strong>Interzoid Company Name Matching API</strong>, showing how to identify similar, inconsistent, or duplicate company and organization names using AI-generated similarity keys.
 
 
 
-<h2>Overview</h2>
+<h3>Overview</h3>
+
+<ul>
+
+&nbsp; <li>Company names vary across datasets (abbreviations, legal suffixes, typos, formatting).</li>
+
+&nbsp; <li>The API generates a <strong>similarity key</strong> for each company name.</li>
+
+&nbsp; <li>Records with the same similarity key are likely matches, enabling scalable fuzzy matching in Snowflake.</li>
+
+</ul>
 
 
 
-<p>
-
-Company names often appear in multiple formats across datasets due to abbreviations, legal suffix
-
-variations, misspellings, and formatting differences.
-
-</p>
-
-
-
-<p>
-
-The Interzoid Company Name Matching API generates a <strong>similarity key</strong> for each company
-
-name. Records with the same key are considered likely matches, enabling fast and scalable fuzzy
-
-matching inside Snowflake.
-
-</p>
-
-
+<h3>What you can do with these examples</h3>
 
 <ul>
 
@@ -50,47 +30,27 @@ matching inside Snowflake.
 
 &nbsp; <li>Create match reports for analytics and data cleansing</li>
 
-&nbsp; <li>Support deduplication and entity resolution workflows</li>
+&nbsp; <li>Enable deduplication and entity resolution workflows</li>
 
 </ul>
 
 
 
-<p>
+<strong>API documentation:</strong>
 
-API documentation:
-
-<a href="https://www.interzoid.com/apis/company-name-matching">
-
-https://www.interzoid.com/apis/company-name-matching
-
-</a>
-
-</p>
+<a href="https://www.interzoid.com/apis/company-name-matching">https://www.interzoid.com/apis/company-name-matching</a>
 
 
 
-<h2>Why Use Interzoid with Snowflake?</h2>
-
-
-
-<p>
-
-Snowflake excels at analytics and data warehousing, but accurate matching of text-based entities like
-
-company names requires more than exact SQL comparisons.
-
-</p>
-
-
+<h3>Why Interzoid + Snowflake</h3>
 
 <ul>
 
 &nbsp; <li>Detect duplicate and near-duplicate company records</li>
 
-&nbsp; <li>Standardize company names across data sources</li>
+&nbsp; <li>Standardize company names across sources</li>
 
-&nbsp; <li>Improve joins between datasets with inconsistent naming</li>
+&nbsp; <li>Improve joins where naming is inconsistent</li>
 
 &nbsp; <li>Prepare cleaner data for BI, reporting, and machine learning</li>
 
@@ -98,9 +58,7 @@ company names requires more than exact SQL comparisons.
 
 
 
-<h2>Contents</h2>
-
-
+<h3>Contents</h3>
 
 <ul>
 
@@ -114,115 +72,41 @@ company names requires more than exact SQL comparisons.
 
 
 
-<p>
-
-File names may change over time, but the workflow remains consistent.
-
-</p>
-
-
-
-<h2>Prerequisites</h2>
-
-
+<h3>Prerequisites</h3>
 
 <ul>
 
-&nbsp; <li>
+&nbsp; <li>Snowflake account: <a href="https://www.snowflake.com">https://www.snowflake.com</a></li>
 
-&nbsp;   Snowflake account:
+&nbsp; <li>Interzoid API key: <a href="https://www.interzoid.com/manage-api-account">https://www.interzoid.com/manage-api-account</a></li>
 
-&nbsp;   <a href="https://www.snowflake.com">https://www.snowflake.com</a>
-
-&nbsp; </li>
-
-&nbsp; <li>
-
-&nbsp;   Interzoid API key:
-
-&nbsp;   <a href="https://www.interzoid.com/manage-api-account">
-
-&nbsp;     https://www.interzoid.com/manage-api-account
-
-&nbsp;   </a>
-
-&nbsp; </li>
-
-&nbsp; <li>Basic familiarity with Snowflake SQL and API calls</li>
+&nbsp; <li>Basic familiarity with Snowflake SQL and REST API calls</li>
 
 </ul>
 
 
 
-<p>
+<strong>Optional background reading:</strong>
 
-Optional background reading:
-
-<a href="https://blog.interzoid.com/technotes/snowflake-data-matching">
-
-https://blog.interzoid.com/technotes/snowflake-data-matching
-
-</a>
-
-</p>
+<a href="https://blog.interzoid.com/technotes/snowflake-data-matching">https://blog.interzoid.com/technotes/snowflake-data-matching</a>
 
 
 
-<h2>Typical Workflow</h2>
-
-
-
-<h3>1. Load Data</h3>
-
-
+<h3>Typical workflow</h3>
 
 <ul>
 
-&nbsp; <li>Company name</li>
+&nbsp; <li><strong>Load data</strong> into a Snowflake table (company name + optional metadata).</li>
 
-&nbsp; <li>Optional metadata</li>
+&nbsp; <li><strong>Generate similarity keys</strong> by calling the Interzoid API for each name and storing the key in Snowflake.</li>
 
-&nbsp; <li>Similarity key column</li>
+&nbsp; <li><strong>Match and analyze</strong> by grouping on similarity key, identifying duplicates, and exporting match reports.</li>
 
 </ul>
 
 
 
-<h3>2. Generate Similarity Keys</h3>
-
-
-
-<p>
-
-Each company name is processed by the Interzoid API to generate a similarity key, which is stored in
-
-Snowflake for fast grouping and matching.
-
-</p>
-
-
-
-<h3>3. Match and Analyze</h3>
-
-
-
-<ul>
-
-&nbsp; <li>Group records by similarity key</li>
-
-&nbsp; <li>Identify duplicates</li>
-
-&nbsp; <li>Export match reports</li>
-
-&nbsp; <li>Feed downstream analytics and data quality pipelines</li>
-
-</ul>
-
-
-
-<h2>Example Use Cases</h2>
-
-
+<h3>Example use cases</h3>
 
 <ul>
 
@@ -232,7 +116,7 @@ Snowflake for fast grouping and matching.
 
 &nbsp; <li>Data warehouse deduplication</li>
 
-&nbsp; <li>Analytics accuracy improvement</li>
+&nbsp; <li>Analytics accuracy improvements</li>
 
 &nbsp; <li>AI and machine learning data preparation</li>
 
@@ -240,35 +124,15 @@ Snowflake for fast grouping and matching.
 
 
 
-<h2>About Interzoid</h2>
+<h3>About Interzoid</h3>
 
+<ul>
 
+&nbsp; <li>Platform: <a href="https://www.interzoid.com">https://www.interzoid.com</a></li>
 
-<p>
+&nbsp; <li>Main GitHub repo: <a href="https://github.com/interzoid/interzoid-platform">https://github.com/interzoid/interzoid-platform</a></li>
 
-Interzoid provides AI-powered APIs for data quality, matching, and enrichment, including company name
-
-matching, individual name matching, address standardization, and business data enrichment.
-
-</p>
-
-
-
-<p>
-
-Platform:
-
-<a href="https://www.interzoid.com">https://www.interzoid.com</a><br>
-
-GitHub:
-
-<a href="https://github.com/interzoid/interzoid-platform">
-
-https://github.com/interzoid/interzoid-platform
-
-</a>
-
-</p>
+</ul>
 
 
 
