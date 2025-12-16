@@ -12,8 +12,10 @@ These examples help data engineers, analytics teams, and platform architects gen
 Street addresses often appear in many different forms due to:
 
 - abbreviations (St vs Street, Ave vs Avenue)
+- spelling variations and misspellings
 - punctuation and spacing differences
-- unit designators (Suite, Ste, Apt, #)
+- unit designator variants (Suite, Ste, Apt, #)
+- inconsistent formats
 - inconsistent capitalization
 - data entry errors and formatting variations
 
@@ -81,7 +83,7 @@ https://www.interzoid.com/apis/street-address-matching
 4. Use SQL `GROUP BY`, `JOIN`, or `ORDER BY` operations on the similarity key to identify likely matches.
 
 ### Example SQL: Find Duplicate Clusters by Similarity Key
-
+(After simkeys have been added to address tables)
 ```sql
 SELECT
   SIMKEY,

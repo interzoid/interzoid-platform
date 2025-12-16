@@ -67,6 +67,7 @@ The Snowflake examples in this directory show how to:
 4. Use standard Snowflake SQL to group, join, and report on likely matches.
 
 ### Example SQL: Find Duplicate Clusters by Similarity Key
+(After simkeys have been added to individual/person name tables)
 
 ```sql
 SELECT

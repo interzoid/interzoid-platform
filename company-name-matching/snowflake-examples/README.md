@@ -1,8 +1,8 @@
 # Company Name Matching with Snowflake
 
-This directory contains **Snowflake integration examples** for the **Interzoid Company Name Matching API**, designed to help data engineers, analytics teams, and platform architects identify similar, duplicate, or inconsistent company and organization names at scale.
+This directory contains **Snowflake integration examples** for the **Interzoid Company Name Matching API**, designed to help data engineers, analytics teams, and platform architects identify and match similar, duplicate, or inconsistent company and organization names at scale.
 
-These examples demonstrate how to generate and use **AI-powered similarity keys** inside Snowflake to improve **data quality, entity resolution, deduplication, and analytics accuracy**.
+These examples demonstrate how to generate and use **AI-powered similarity keys** inside Snowflake (using user-defined functions) to improve **data quality, entity resolution, deduplication, and analytics accuracy**.
 
 ---
 
@@ -10,7 +10,7 @@ These examples demonstrate how to generate and use **AI-powered similarity keys*
 
 Company and organization names often appear in many different formats across systems due to abbreviations, legal suffix variations, misspellings, punctuation differences, and inconsistent capitalization.
 
-The Interzoid Company Name Matching API analyzes each company name and returns a **similarity key**. Records that share the same similarity key are considered strong matches, even when the original name strings differ significantly.
+The Interzoid Company Name Matching API analyzes each company name and then generates and returns a **similarity key**. Records that share the same similarity key are considered strong matches, even when the original name strings differ significantly.
 
 By generating and storing similarity keys in Snowflake, you can use standard SQL to efficiently group, match, and analyze related company records.
 
@@ -26,6 +26,7 @@ The Snowflake examples in this directory show how to:
 - Generate company name similarity keys using Interzoid APIs
 - Store similarity keys in Snowflake tables
 - Identify duplicate or related company records using SQL
+- Join/match records across tables while overcoming company inconsistency
 - Create match reports for analytics and data cleansing
 - Support entity resolution and master data management workflows
 
@@ -73,7 +74,8 @@ Interzoid Company Name Matching is commonly used for:
 4. **Match and Group Records**  
    Use standard SQL `GROUP BY`, `JOIN`, or `ORDER BY` operations on the similarity key to identify matches.
 
-### Example Matching Pattern
+### Example "Match Report" Matching Pattern
+(After simkeys have been added to organization/company name tables)
 
 ```sql
 SELECT
