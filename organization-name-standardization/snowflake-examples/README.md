@@ -70,6 +70,7 @@ These examples support both **ad-hoc analysis** and **automated ELT / ETL workfl
 4. Use the standardized value for grouping, joins, reporting, and downstream matching.
 
 ### Example SQL Pattern
+(After standardized versions of company names have been inserted)
 
 ```sql
 SELECT

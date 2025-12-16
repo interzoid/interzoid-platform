@@ -102,7 +102,7 @@ Email trust scores stored in Snowflake provide a powerful signal for lead qualit
 4. Use scores for filtering, segmentation, and risk analysis.
 
 ### Example SQL Pattern
-
+(After email trust scores have been inserted, you can group by scores as one example)
 ```sql
 SELECT
   EMAIL_TRUST_SCORE,

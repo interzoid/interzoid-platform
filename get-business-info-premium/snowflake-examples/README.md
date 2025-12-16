@@ -33,7 +33,7 @@ The Snowflake examples in this directory show how to:
 - support segmentation, reporting, and enrichment workflows
 - automate enrichment using Snowflake ELT / ETL patterns
 
-These examples are designed to run **inside Snowflake** as part of data pipelines, not as point-to-point CRM integrations.
+These examples are designed to run **inside Snowflake** as part of data pipelines, using Snowpark Python UDF to call the API.
 
 ---
 
@@ -90,7 +90,7 @@ In addition to CRM and marketing, Snowflake-based business enrichment supports b
 4. Use enriched data for CRM feeds, analytics, and reporting.
 
 ### Example SQL Pattern
-
+(After business information has been appended, you could group by NAICS/industry)
 ```sql
 SELECT
   INDUSTRY,

@@ -11,7 +11,7 @@ These examples show how to enrich company records inside Snowflake with **author
 
 Organizations often operate under complex corporate hierarchies that include parent companies, subsidiaries, and holding entities. In many datasets, only the subsidiary or operating company name is present, making it difficult to understand true corporate ownership.
 
-The Interzoid Parent Company Information API returns **parent company and corporate hierarchy data** for a given company name. By enriching records with this information in Snowflake, organizations can unify data across subsidiaries, improve rollups, and gain clearer insight into corporate structures.
+The Interzoid Parent Company Information API returns **parent company** for a given company name. By enriching records with this information in Snowflake, organizations can unify data across subsidiaries, improve rollups, and gain clearer insight into corporate structures.
 
 Product documentation (authoritative reference for this directory):
 https://www.interzoid.com/apis/get-parent-company-info
@@ -64,7 +64,7 @@ These patterns support both **one-time enrichment** and **automated ELT / ETL wo
 4. Use SQL to group, filter, and report by parent company.
 
 ### Example SQL Pattern
-
+(After parent company names have been added to the table)
 ```sql
 SELECT
   PARENT_COMPANY_NAME,
