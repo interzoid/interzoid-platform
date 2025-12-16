@@ -2,21 +2,14 @@ API Product Page
 
 ----------------
 
-
-
 Company Name Matching API Product Page: https://www.interzoid.com/apis/company-name-matching
-
-
 
 The API generates similarity keys for a given corporate or organizational entity. A similarity key represents hundreds of possible permutations of the entity name (variations, misspellings, acronyms, abbreviations, typos, etc.). Then, matching by similarity key rather than the actual data itself, provides for dramatically higher match and search rates when comparing data.
 
 
 
-<br>
+There are multiple code examples for each language platform:
 
-There are three code examples for each language platform:
-
-<br>
 
 <b>example.xx</b> (extension varies based on programming language)
 
@@ -24,22 +17,17 @@ There are three code examples for each language platform:
 
 <i>Generates a single similarity key used for matching or searching purposes:</i>
 
-<br>
 
 ```
 IBM -> edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs
 ```
 
-<br>
-<br>
 
 <b>append-simkeys-to-file.xx</b>
 
 --------------------------
 
 <i>Generates a single similarity key for each entry of a text file (see sample input file):</i>
-
-<br>
 
 ```
 IBM,edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs
@@ -58,16 +46,12 @@ google inc.,pGWzK9MrYZzcyOrW5AkpnJYiOgI3qnO0EhwsuNh\_dxk
 Intl bus machines,edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs
 ```
 
-<br>
-<br>
-
 <b>generate-match-report.xx</b>
 
 -------------------------
 
 <i>Generates a single similarity key for each entry of a text file, sorts results by simkey, and then writes clusters of matching records based on simkey to an output file:</i>
 
-<br>
 
 ```
 IBM,edplDLsBWcH9Sa7ZECaJx8KiEl5lvMWAa6ackCA4azs
