@@ -4,6 +4,17 @@ This directory contains **Snowflake integration examples** for the **Interzoid C
 
 These examples demonstrate how to generate and use **AI-powered similarity keys** inside Snowflake (using user-defined functions) to improve **data quality, entity resolution, deduplication, and analytics accuracy**.
 
+The combination of knowledge bases, specialized algorithms, and an AI-enhanced approach goes far beyond what can be achieved with "fuzzy matching" and other string-matching based approaches.
+
+Also see:
+
+Individual Name Matching with Snowflake: https://github.com/interzoid/interzoid-platform/tree/main/individual-name-matching/snowflake-examples
+
+Street Address Matching with Snowflake: https://github.com/interzoid/interzoid-platform/tree/main/street-address-matching/snowflake-examples
+
+Connect and run matching jobs from a browser app using a connection string:
+https://snowflake-batch.interzoid.com/
+
 ---
 
 ## Overview
@@ -60,15 +71,17 @@ Interzoid Company Name Matching is commonly used for:
 
 ---
 
-## How It Works in Snowflake
+## How it Works in Snowflake
 
 1. **Load Company Name Data**  
-   Store company or organization names in a Snowflake table.
+   Run with company or organization names in either an existing or new Snowflake table.
 
-2. **Generate Similarity Keys**  
+2. **Generate Similarity Keys**  (Performed by Interzoid)
+
    Call the Interzoid Company Name Matching API from Snowflake using an external function, UDF, or stored procedure.
 
-3. **Store the Similarity Key**  
+3. **Store the Similarity Key**  (Performed by Interzoid)
+
    Save the returned similarity key in a column such as `SIMKEY`.
 
 4. **Match and Group Records**  
