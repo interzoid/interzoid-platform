@@ -43,7 +43,7 @@ The Snowflake examples in this directory show how to:
 
 These patterns are suitable for both **ad-hoc analysis** and **automated ELT/ETL pipelines**.
 
-Example results after running SQL script:
+Example results after running SQL script (insert-simkeys.sql):
 
 ![img.png](img.png)
 ---
