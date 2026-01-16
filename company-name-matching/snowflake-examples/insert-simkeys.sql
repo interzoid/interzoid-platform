@@ -17,7 +17,7 @@ USE DATABASE YOUR_DB;
 USE SCHEMA PUBLIC;
 
 --------------------------------------------------------------------------------
--- 2. SECURITY OBJECTS (Rule & Secret)
+-- 2. SECURITY OBJECTS (Rule & Secret) - allows access to Interzoid's API endpoint
 --------------------------------------------------------------------------------
 -- Whitelist the API Domain
 CREATE OR REPLACE NETWORK RULE YOUR_DB.PUBLIC.interzoid_api_rule
@@ -31,7 +31,7 @@ CREATE OR REPLACE SECRET YOUR_DB.PUBLIC.interzoid_license_key
   SECRET_STRING = 'your-api-key'; -- <--- PASTE YOUR ACTUAL KEY HERE
 
 --------------------------------------------------------------------------------
--- 3. INTEGRATION (The Bridge)
+-- 3. INTEGRATION (The Bridge) - enables integration with the UDF
 --------------------------------------------------------------------------------
 -- Connect the Network Rule and Secret to the Account
 CREATE OR REPLACE EXTERNAL ACCESS INTEGRATION interzoid_api_integration
@@ -40,7 +40,7 @@ CREATE OR REPLACE EXTERNAL ACCESS INTEGRATION interzoid_api_integration
   ENABLED = TRUE;
 
 --------------------------------------------------------------------------------
--- 4. PYTHON FUNCTION (The Logic)
+-- 4. PYTHON FUNCTION (The Logic) - this UDF wraps the Interzoid API so it can be called with SQL
 --------------------------------------------------------------------------------
 -- We use the fully qualified name (YOUR_DB.PUBLIC...) to avoid context errors
 CREATE OR REPLACE FUNCTION YOUR_DB.PUBLIC.get_company_match(company_name STRING)
@@ -82,7 +82,7 @@ def get_match(company_name):
 $$;
 
 --------------------------------------------------------------------------------
--- 5. PERMISSIONS (Handover to Developer)
+-- 5. PERMISSIONS
 --------------------------------------------------------------------------------
 -- Allow SYSADMIN to use what we just built
 GRANT USAGE ON INTEGRATION interzoid_api_integration TO ROLE SYSADMIN;
@@ -92,7 +92,7 @@ GRANT USAGE ON SCHEMA YOUR_DB.PUBLIC TO ROLE SYSADMIN;
 GRANT USAGE ON FUNCTION YOUR_DB.PUBLIC.get_company_match(STRING) TO ROLE SYSADMIN;
 
 --------------------------------------------------------------------------------
--- 6. TEST & EXECUTION
+-- 6. TEST & EXECUTION - this appends similarity keys to an entire table (see table results in README)
 --------------------------------------------------------------------------------
 
 -- Test 1: Create a dummy table and process it

@@ -1,8 +1,11 @@
 --------------------------------------------------------------------------------
 -- COMPLETE END-TO-END SCRIPT
+
+-- This example will actually generate a match report after appending similarity keys and
+-- generate a match report of similar organization names clustered together
 -- 1. Setup Environment
 -- 2. Create Security Objects
--- 3. Create Python Function
+-- 3. Create UDF: Python Function
 -- 4. Create Data
 -- 5. Run Matching Query
 --------------------------------------------------------------------------------
