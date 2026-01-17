@@ -6,13 +6,17 @@ These examples demonstrate how to generate and use **AI-powered similarity keys*
 
 The combination of knowledge bases, specialized algorithms, and an AI-enhanced approach goes far beyond what can be achieved with "fuzzy matching" and other string-matching based approaches.
 
+
+Learn more about the API:
+https://www.interzoid.com/apis/company-name-matching
+
 Also see:
 
 Individual Name Matching with Snowflake: https://github.com/interzoid/interzoid-platform/tree/main/individual-name-matching/snowflake-examples
 
 Street Address Matching with Snowflake: https://github.com/interzoid/interzoid-platform/tree/main/street-address-matching/snowflake-examples
 
-Connect and run matching jobs from a browser app using a connection string:
+You can also connect and run matching jobs from a browser app with this API using a connection string to access Snowflake tables:
 https://snowflake-batch.interzoid.com/
 
 ---
@@ -25,8 +29,6 @@ The Interzoid Company Name Matching API analyzes each company name and then gene
 
 By generating and storing similarity keys in Snowflake, you can use standard SQL to efficiently group, match, and analyze related company records.
 
-Learn more about the API:
-https://www.interzoid.com/apis/company-name-matching
 
 ---
 
@@ -43,10 +45,16 @@ The Snowflake examples in this directory show how to:
 
 These patterns are suitable for both **ad-hoc analysis** and **automated ELT/ETL pipelines**.
 
-Example results after running SQL script (insert-simkeys.sql):
+Example results after running SQL script with similar company names generating the same similarity key, making identification or matching easy (insert-simkeys.sql):
 
 ![img.png](img.png)
 ---
+
+### Files:
+
+- example.sql - generates a similarity key for one company name
+- insert-simkeys.sql - appends similarity keys for each row in a table
+- match-report.sql - generates a report in SQL showing company names that share the same simkey in groups
 
 ## Common Company Name Matching Use Cases
 
@@ -100,3 +108,5 @@ SELECT
 FROM COMPANY_TABLE
 GROUP BY SIMKEY
 HAVING COUNT(*) > 1;
+```
+
