@@ -1,14 +1,18 @@
 # Company Name Matching with Snowflake
 
+Struggling with organization name differences such as **IBM** & **International Business Machines**? **GE Corp** & **General Electric**? **L.A. County Schools** and **Los Angeles Schools**? Misspellings? Variations? International data?
+
 This directory contains **Snowflake integration examples** for the **Interzoid Company Name Matching API**, designed to help data engineers, analytics teams, and platform architects identify and match similar, duplicate, or inconsistent company and organization names at scale.
 
-These examples demonstrate how to generate and use **AI-powered similarity keys** inside Snowflake (using user-defined functions) to improve **data quality, entity resolution, deduplication, and analytics accuracy**.
+These examples demonstrate how to generate and use **AI-powered similarity keys** inside Snowflake SQL scripts (using user-defined functions) to improve **data quality, entity resolution, deduplication, analytics accuracy, and provide the ability to join inconsistent company/organization names across tables**.
 
 The combination of knowledge bases, specialized algorithms, and an AI-enhanced approach goes far beyond what can be achieved with "fuzzy matching" and other string-matching based approaches.
 
 
 Learn more about the API:
 https://www.interzoid.com/apis/company-name-matching
+
+Website: https://www.interzoid.com
 
 Also see:
 
