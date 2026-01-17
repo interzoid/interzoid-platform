@@ -6,7 +6,7 @@ This directory contains **Snowflake integration examples** for the **Interzoid C
 
 These examples demonstrate how to generate and use **AI-powered similarity keys** inside Snowflake SQL scripts (using user-defined functions) to improve **data quality, entity resolution, deduplication, analytics accuracy, and provide the ability to join inconsistent company/organization names across tables**.
 
-The combination of knowledge bases, specialized algorithms, and an AI-enhanced approach goes far beyond what can be achieved with "fuzzy matching" and other string-matching based approaches.
+The combination of knowledge bases, specialized algorithms, and an AI-enhanced approach goes far beyond what can be achieved with "fuzzy matching" and other string-based matching approaches.
 
 
 Learn more about the API:
@@ -114,3 +114,4 @@ GROUP BY SIMKEY
 HAVING COUNT(*) > 1;
 ```
 
+Need help or want to discuss a use case? [Contact Support](mailto:support@interzoid.com)
