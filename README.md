@@ -24,6 +24,7 @@
 ![OpenAPI](https://img.shields.io/badge/OpenAPI-Spec-6BA539?logo=openapi-initiative&logoColor=white)
 ![API](https://img.shields.io/badge/API-Platform-brightgreen)
 [![Java](https://img.shields.io/badge/Java-11%2B-red?logo=openjdk&logoColor=white)](https://github.com/interzoid/interzoid-platform/search?q=java)
+[![x402](https://img.shields.io/badge/x402-Protocol-0052FF?logo=coinbase&logoColor=white)](https://github.com/coinbase/x402)
 [![Snowflake](https://img.shields.io/badge/Snowflake-Platform-29B5E8?logo=snowflake&logoColor=white)](https://www.snowflake.com/)
 [![Snowpark](https://img.shields.io/badge/Snowpark-Python%20%7C%20Java-4F46E5)](https://docs.snowflake.com/en/developer-guide/snowpark)
 [![SQL](https://img.shields.io/badge/SQL-Snowflake-blue?logo=postgresql&logoColor=white)](https://docs.snowflake.com/)
@@ -41,7 +42,7 @@ This repository contains numerous code samples, tooling, and usage examples show
 
 
 
-All APIs require an API key, which can be obtained by registering at https://www.interzoid.com. All tools and utilities are free to use as only the underlying API usage is billed (after trial API credits are exhausted).
+All APIs require an API key (except for when using x402), which can be obtained by registering at https://www.interzoid.com. All tools and utilities are free to use as only the underlying API usage is billed (after trial API credits are exhausted).
 
 
 
