@@ -11,7 +11,7 @@ These examples help developers, data engineers, and Web3 builders call Interzoid
 
 The **x402 protocol** enables machine-to-machine payments over HTTP using the standard `402 Payment Required` status code. Instead of authenticating with a traditional API key, a client pays for each API call with a small USDC micropayment on the BASE blockchain (an Ethereum Layer 2 network). This opens up a new paradigm for API access:
 
-- **No API key signup or subscription required** — pay per call with crypto
+- **No API key signup or subscription required** — pay per call with USDC
 - **Ideal for AI agents and autonomous systems** that need programmatic API access without human-managed credentials
 - **Instant settlement** on the BASE blockchain using USDC (a stablecoin pegged to the US Dollar)
 - **Fully compatible** with all Interzoid data quality, matching, and enrichment APIs
@@ -179,7 +179,7 @@ Full API catalog: https://www.interzoid.com/cloud-api-directory
 - ideal for testing, prototyping, or low-volume usage
 
 ### Web3 and Decentralized Applications
-- integrate data quality capabilities into dApps with native crypto payments
+- integrate data quality capabilities into dApps with native USDC payments
 - build composable data services in blockchain-native architectures
 
 ### Machine-to-Machine Commerce
