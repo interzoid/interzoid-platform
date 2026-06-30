@@ -1,0 +1,13 @@
+# cURL shows the raw protocol. A bare call returns a 402 with the
+# exact quote; paying requires signing a USDC authorization, which is
+# why a client library is normally used. To see the quote:
+
+curl -i "https://match.interzoid.com/match?connection=https://dl.interzoid.com/csv/companies.csv&filetype=csv&function=company-name-only&company_column=1&has_header=true"
+
+# Response: HTTP/1.1 402 Payment Required
+# The JSON body lists the exact amount, the USDC asset, the Base
+# network, and the payTo address. An x402 client signs a payment for
+# that amount and retries with a Payment-Signature header.
+
+# Already have an Interzoid API key? Skip x402 entirely:
+curl "https://match.interzoid.com/match?apikey=YOUR_KEY&connection=https://dl.interzoid.com/csv/companies.csv&filetype=csv&function=company-name-only&company_column=1&has_header=true" -o matches.csv
