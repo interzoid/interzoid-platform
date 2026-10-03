@@ -1,0 +1,9 @@
+# cURL example
+# macOS / Linux (Terminal):
+
+curl -X POST 'https://enrich-api.interzoid.com/enrich?function=business-info-domain&apikey=YOUR_API_KEY' -H 'Content-Type: application/json' -d '[{"input_value":"Walmart"},{"input_value":"AMZN"},{"input_value":"Target Stores"},{"input_value":"Costco"},{"input_value":"The Home Depot"},{"input_value":"Lowe\u2019s"},{"input_value":"McDonald\u2019s Hamburgers"},{"input_value":"Starbucks"},{"input_value":"Coca-Cola Inc"},{"input_value":"PepsiCo"},{"input_value":"AppleComputer"},{"input_value":"Microsft Corp"},{"input_value":"Ford Motor Company"},{"input_value":"Gen. Motors"},{"input_value":"AT&T"},{"input_value":"Verizon"},{"input_value":"FedEx"},{"input_value":"UPS"},{"input_value":"Bank of America"},{"input_value":"CVS Health"}]'
+
+# Results
+
+{"Code":"Success","Function":"business-info-domain","RecordCount":20,"ErrorCount":0,"OutputFields":["Domain"],"Records":[{"input_value":"Walmart","Domain":"walmart.com"},{"input_value":"AMZN","Domain":"amazon.com"},{"input_value":"Target Stores","Domain":"target.com"},{"input_value":"Costco","Domain":"costco.com"},{"input_value":"The Home Depot","Domain":"homedepot.com"},{"input_value":"Lowe's","Domain":"lowes.com"},{"input_value":"McDonald's Hamburgers","Domain":"mcdonalds.com"},{"input_value":"Starbucks","Domain":"starbucks.com"},{"input_value":"Coca-Cola Inc","Domain":"coca-cola.com"},{"input_value":"PepsiCo","Domain":"pepsico.com"},{"input_value":"AppleComputer","Domain":"apple.com"},{"input_value":"Microsft Corp","Domain":"microsoft.com"},{"input_value":"Ford Motor Company","Domain":"ford.com"},{"input_value":"Gen. Motors","Domain":"gm.com"},{"input_value":"AT\u0026T","Domain":"att.com"},{"input_value":"Verizon","Domain":"verizon.com"},{"input_value":"FedEx","Domain":"fedex.com"},{"input_value":"UPS","Domain":"ups.com"},{"input_value":"Bank of America","Domain":"bankofamerica.com"},{"input_value":"CVS Health","Domain":"cvshealth.com"}]}
+
